@@ -102,7 +102,7 @@ export default function AiCampaignsAdmin() {
           </Link>
           <Link
             to="/rnl-panel/ai-kampanyalar/yeni"
-            className="inline-flex items-center gap-2 bg-[#448834] hover:bg-[#357228] text-white font-bold px-4 py-2 rounded-lg transition-colors text-sm"
+            className="inline-flex items-center gap-2 bg-[#b33b62] hover:bg-[#8e2c4d] text-white font-bold px-4 py-2 rounded-lg transition-colors text-sm"
           >
             <Plus size={16} />
             New Campaign
@@ -127,7 +127,7 @@ export default function AiCampaignsAdmin() {
         <div className="text-center py-20 text-gray-400">
           <Sparkles size={36} className="mx-auto mb-3 text-gray-300" />
           <p className="mb-4">No campaigns yet.</p>
-          <Link to="/rnl-panel/ai-kampanyalar/yeni" className="text-[#448834] font-semibold hover:underline">
+          <Link to="/rnl-panel/ai-kampanyalar/yeni" className="text-[#b33b62] font-semibold hover:underline">
             Create the first campaign
           </Link>
         </div>
@@ -153,7 +153,7 @@ export default function AiCampaignsAdmin() {
                       <td className="px-5 py-4">
                         <Link
                           to={`/rnl-panel/ai-kampanyalar/${campaign.id}`}
-                          className="font-semibold text-gray-900 text-base leading-snug hover:text-[#448834]"
+                          className="font-semibold text-gray-900 text-base leading-snug hover:text-[#b33b62]"
                         >
                           {campaign.name}
                         </Link>
@@ -188,14 +188,14 @@ export default function AiCampaignsAdmin() {
                             disabled={busyId === campaign.id}
                             title={campaign.enabled ? 'Pause' : 'Resume'}
                             aria-label={campaign.enabled ? `Pause ${campaign.name}` : `Resume ${campaign.name}`}
-                            className="p-2 text-gray-400 hover:text-[#448834] hover:bg-green-50 rounded-lg transition-colors disabled:opacity-40"
+                            className="p-2 text-gray-400 hover:text-[#b33b62] hover:bg-green-50 rounded-lg transition-colors disabled:opacity-40"
                           >
                             {campaign.enabled ? <Pause size={16} /> : <Play size={16} />}
                           </button>
                           <Link
                             to={`/rnl-panel/ai-kampanyalar/${campaign.id}/duzenle`}
                             aria-label={`Edit ${campaign.name}`}
-                            className="p-2 text-gray-400 hover:text-[#448834] hover:bg-green-50 rounded-lg transition-colors"
+                            className="p-2 text-gray-400 hover:text-[#b33b62] hover:bg-green-50 rounded-lg transition-colors"
                           >
                             <Pencil size={16} />
                           </Link>

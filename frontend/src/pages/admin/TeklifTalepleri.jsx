@@ -37,7 +37,7 @@ function RequestRow({ request, onStatusChange, onDelete, deleting }) {
           </div>
           <div className="flex items-center gap-4 flex-wrap text-sm text-gray-500">
             {request.email && (
-              <a href={`mailto:${request.email}`} className="flex items-center gap-1.5 hover:text-[#448834] transition-colors">
+              <a href={`mailto:${request.email}`} className="flex items-center gap-1.5 hover:text-[#b33b62] transition-colors">
                 <Mail size={13} /> {request.email}
               </a>
             )}
@@ -56,7 +56,7 @@ function RequestRow({ request, onStatusChange, onDelete, deleting }) {
             <select
               value={request.status}
               onChange={e => onStatusChange(request.id, e.target.value)}
-              className={`appearance-none pl-7 pr-7 py-1.5 rounded-lg text-sm font-semibold border border-gray-200 bg-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#448834]/30 ${meta.className}`}
+              className={`appearance-none pl-7 pr-7 py-1.5 rounded-lg text-sm font-semibold border border-gray-200 bg-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 ${meta.className}`}
             >
               {Object.entries(STATUS_META).map(([value, m]) => (
                 <option key={value} value={value}>{m.label}</option>

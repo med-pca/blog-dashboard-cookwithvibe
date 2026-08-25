@@ -21,7 +21,7 @@ const RATED_KEY = "chatRated";
 let openTracked = false;
 
 const GREETING =
-  "Welcome to Pulse Recipe. Ask me anything about cooking, meal prep or planning and I will answer right here. What are you making?";
+  "Welcome to CookWithVibe. Ask me anything about cooking, meal prep or planning and I will answer right here. What are you making?";
 
 const QUICK_REPLIES = [
   {
@@ -187,16 +187,16 @@ export default function TeklifChatbot({
         className={`relative w-full sm:w-100 h-[85vh] sm:h-140 bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden origin-bottom sm:origin-bottom-right ${closing ? "chatbot-exit" : "chatbot-enter"}`}
       >
         {/* Header */}
-        <div className="bg-[#448834] px-5 py-4 flex items-center gap-3 shrink-0">
+        <div className="bg-[#b33b62] px-5 py-4 flex items-center gap-3 shrink-0">
           <img
             src="/food/logo-mark.svg"
-            alt="Pulse Recipe"
+            alt="CookWithVibe"
             className="w-10 h-10"
             style={{ filter: "brightness(0) invert(1)" }}
           />
           <div className="flex-1">
             <p className="text-white font-semibold text-sm leading-tight">
-              Pulse Recipe Assistant
+              CookWithVibe Assistant
             </p>
             <p className="text-white/70 text-xs">
               Let us find what fits your kitchen best
@@ -294,13 +294,13 @@ export default function TeklifChatbot({
             >
               {m.role === "assistant" && (
                 <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center shrink-0 mr-2 mt-0.5 shadow-sm border border-gray-100">
-                  <img src="/food/logo-mark.svg" alt="Pulse Recipe" className="w-6 h-6" />
+                  <img src="/food/logo-mark.svg" alt="CookWithVibe" className="w-6 h-6" />
                 </div>
               )}
               <div
                 className={`max-w-[78%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
                   m.role === "user"
-                    ? "bg-[#448834] text-white rounded-br-sm"
+                    ? "bg-[#b33b62] text-white rounded-br-sm"
                     : "bg-white text-gray-800 shadow-sm border border-gray-100 rounded-bl-sm"
                 }`}
               >
@@ -318,9 +318,9 @@ export default function TeklifChatbot({
                   <button
                     key={qr.label}
                     onClick={() => send(qr.value)}
-                    className="flex items-center gap-3 w-full text-left px-4 py-3 bg-white border border-gray-200 hover:border-[#448834] hover:bg-[#f5fbf3] rounded-xl transition-colors shadow-sm group"
+                    className="flex items-center gap-3 w-full text-left px-4 py-3 bg-white border border-gray-200 hover:border-[#b33b62] hover:bg-[#fbedf1] rounded-xl transition-colors shadow-sm group"
                   >
-                    <Icon size={16} className="text-[#448834] shrink-0" />
+                    <Icon size={16} className="text-[#b33b62] shrink-0" />
                     <div>
                       <p className="text-sm font-medium text-gray-800">
                         {qr.label}
@@ -336,10 +336,10 @@ export default function TeklifChatbot({
           {loading && (
             <div className="flex justify-start">
               <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center shrink-0 mr-2 mt-0.5 shadow-sm border border-gray-100">
-                <img src="/food/logo-mark.svg" alt="Pulse Recipe" className="w-6 h-6" />
+                <img src="/food/logo-mark.svg" alt="CookWithVibe" className="w-6 h-6" />
               </div>
               <div className="bg-white border border-gray-100 shadow-sm px-4 py-3 rounded-2xl rounded-bl-sm">
-                <Loader2 size={16} className="text-[#448834] animate-spin" />
+                <Loader2 size={16} className="text-[#b33b62] animate-spin" />
               </div>
             </div>
           )}
@@ -355,12 +355,12 @@ export default function TeklifChatbot({
               onKeyDown={handleKey}
               placeholder="Type your message..."
               rows={1}
-              className="flex-1 resize-none px-4 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#448834] transition-colors max-h-24 leading-relaxed"
+              className="flex-1 resize-none px-4 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#b33b62] transition-colors max-h-24 leading-relaxed"
             />
             <button
               onClick={() => send(input)}
               disabled={!input.trim() || loading}
-              className="w-10 h-10 bg-[#448834] hover:bg-[#357228] disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-xl flex items-center justify-center transition-colors shrink-0"
+              className="w-10 h-10 bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-xl flex items-center justify-center transition-colors shrink-0"
               aria-label="Send"
             >
               <Send size={16} />

@@ -8,7 +8,7 @@
 // omitting the key — a convention the consumers already handle (`parsed.x ||
 // default` on import, `if (parsed.x)` in the form).
 //
-// pulserecipe.com is an English recipe site. The DTO field NAMES are historic
+// cookwithvibe.com is an English recipe site. The DTO field NAMES are historic
 // (name/location/kw/date/specs…), but the admin form re-labels them for a
 // recipe collection — so the descriptions below drive English recipe content
 // into each field by its form meaning:
@@ -97,7 +97,7 @@ export const PROJECT_AUTOFILL_SCHEMA = {
 // and the optional instruction travel in the `input` field and are labelled as
 // data, so a pasted "ignore your instructions" cannot reach this block.
 export const PROJECT_AUTOFILL_INSTRUCTIONS = [
-  'You prepare recipe-collection metadata for pulserecipe.com, an English-language recipe website.',
+  'You prepare recipe-collection metadata for cookwithvibe.com, an English-language recipe website.',
   'The input is a collection name or theme, optionally an Instagram caption; build the collection details from it.',
   '',
   'Content rules:',

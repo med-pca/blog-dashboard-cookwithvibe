@@ -13,7 +13,7 @@ const homeSchema = {
     {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
-      name: "Pulse Recipe",
+      name: "CookWithVibe",
       url: SITE_URL,
       inLanguage: "en-US",
       publisher: { "@id": `${SITE_URL}/#organization` },
@@ -21,18 +21,18 @@ const homeSchema = {
     {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
-      name: "Pulse Recipe",
+      name: "CookWithVibe",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
         url: `${SITE_URL}/food/logo-mark.svg`,
       },
-      email: "contact@pulserecipe.com",
+      email: "contact@cookwithvibe.com",
     },
     {
       "@type": "Blog",
       "@id": `${SITE_URL}/#blog`,
-      name: "Pulse Recipe Blog",
+      name: "CookWithVibe Blog",
       description:
         "Simple, seasonal, and practical recipes for everyday home cooking.",
       url: `${SITE_URL}/recipes`,

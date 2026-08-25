@@ -37,13 +37,13 @@ export default function HowItWorks() {
         loading="lazy"
       />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 right-20 w-72 h-72 rounded-full bg-[#448834]/5 blur-3xl" />
-        <div className="absolute bottom-10 left-20 w-56 h-56 rounded-full bg-[#f5ce31]/10 blur-3xl" />
+        <div className="absolute top-10 right-20 w-72 h-72 rounded-full bg-[#b33b62]/5 blur-3xl" />
+        <div className="absolute bottom-10 left-20 w-56 h-56 rounded-full bg-[#f5a3b8]/10 blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="inline-block text-[#357228] font-semibold text-base mb-4">
+          <span className="inline-block text-[#8e2c4d] font-semibold text-base mb-4">
             HOW IT WORKS
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -80,7 +80,7 @@ export default function HowItWorks() {
                     loading="lazy"
                   />
                 </div>
-                <div className="absolute top-0 left-0 w-12 h-12 rounded-full bg-[#357228] flex items-center justify-center shadow-md z-10">
+                <div className="absolute top-0 left-0 w-12 h-12 rounded-full bg-[#8e2c4d] flex items-center justify-center shadow-md z-10">
                   <span className="text-white font-bold text-base font-['Rajdhani']">
                     {s.num}
                   </span>
@@ -94,12 +94,12 @@ export default function HowItWorks() {
           ))}
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#448834] overflow-hidden">
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#b33b62] overflow-hidden">
         <div
           className="absolute inset-0 w-1/4 animate-[shimmer_12s_linear_infinite]"
           style={{
             background:
-              "linear-gradient(90deg, transparent, #f5ce31, transparent)",
+              "linear-gradient(90deg, transparent, #f5a3b8, transparent)",
           }}
         />
       </div>

@@ -32,6 +32,21 @@ export interface ArticleRequest {
   timeoutMs: number
 }
 
+// The structured recipe facts, returned in the same call as the article so a
+// draft is complete on arrival — the numbers come from the model that just
+// wrote the method, which is the only point at which they are guaranteed to
+// agree with it. `isRecipe` is the model's own verdict and is not persisted:
+// it exists so a technique or planning article can say "no recipe here"
+// instead of inventing a serving count.
+export interface GeneratedRecipe {
+  isRecipe: boolean
+  prepMinutes: number | null
+  cookMinutes: number | null
+  servings: number | null
+  equipment: string | null
+  ingredients: string[]
+}
+
 // Exactly the strict JSON Schema the provider is asked to return.
 export interface GeneratedArticle {
   title: string
@@ -41,6 +56,7 @@ export interface GeneratedArticle {
   content: string
   imagePrompt: string
   suggestedKeywords: string[]
+  recipe: GeneratedRecipe
 }
 
 export interface TopicResult {

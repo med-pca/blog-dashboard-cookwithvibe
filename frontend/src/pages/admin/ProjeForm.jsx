@@ -223,7 +223,7 @@ if (parsed.description) { set('description', parsed.description); count++ }
           <button
             type="button"
             onClick={() => setInstaOpen(true)}
-            className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl bg-linear-to-r from-[#448834] to-[#5aa042] hover:from-[#357228] hover:to-[#4a9035] text-white transition-all shadow-md shadow-[#448834]/20 hover:shadow-lg hover:shadow-[#448834]/30 hover:-translate-y-0.5 active:translate-y-0"
+            className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl bg-linear-to-r from-[#b33b62] to-[#c85a7f] hover:from-[#8e2c4d] hover:to-[#c85a7f] text-white transition-all shadow-md shadow-[#b33b62]/20 hover:shadow-lg hover:shadow-[#b33b62]/30 hover:-translate-y-0.5 active:translate-y-0"
           >
             <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
               <Sparkles size={18} />
@@ -235,9 +235,9 @@ if (parsed.description) { set('description', parsed.description); count++ }
             <span className="text-white/50 text-lg">→</span>
           </button>
         ) : (
-          <div className="rounded-2xl border border-[#448834]/20 overflow-hidden shadow-sm">
+          <div className="rounded-2xl border border-[#b33b62]/20 overflow-hidden shadow-sm">
             {/* Header */}
-            <div className="flex items-center gap-3 px-5 py-3.5 bg-linear-to-r from-[#448834] to-[#5aa042]">
+            <div className="flex items-center gap-3 px-5 py-3.5 bg-linear-to-r from-[#b33b62] to-[#c85a7f]">
               <div className="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
                 <Sparkles size={15} className="text-white" />
               </div>
@@ -256,7 +256,7 @@ if (parsed.description) { set('description', parsed.description); count++ }
                 /* Success screen */
                 <div className="flex flex-col items-center py-4 gap-3">
                   <div className="success-icon">
-                    <CheckCircle2 size={52} className="text-[#448834]" strokeWidth={1.5} />
+                    <CheckCircle2 size={52} className="text-[#b33b62]" strokeWidth={1.5} />
                   </div>
                   <p className="success-text text-base font-bold text-gray-900">Form dolduruldu!</p>
                   <p className="success-sub text-sm text-gray-400">{fillSuccess} alan otomatik dolduruldu</p>
@@ -265,9 +265,9 @@ if (parsed.description) { set('description', parsed.description); count++ }
                 /* Loading screen */
                 <div className="flex flex-col items-center py-6 gap-4">
                   <div className="flex items-center gap-1.5">
-                    <span className="dot-1 w-2.5 h-2.5 rounded-full bg-[#448834] inline-block" />
-                    <span className="dot-2 w-2.5 h-2.5 rounded-full bg-[#448834] inline-block" />
-                    <span className="dot-3 w-2.5 h-2.5 rounded-full bg-[#448834] inline-block" />
+                    <span className="dot-1 w-2.5 h-2.5 rounded-full bg-[#b33b62] inline-block" />
+                    <span className="dot-2 w-2.5 h-2.5 rounded-full bg-[#b33b62] inline-block" />
+                    <span className="dot-3 w-2.5 h-2.5 rounded-full bg-[#b33b62] inline-block" />
                   </div>
                   <p className="text-sm text-gray-500 font-medium">Analysing the text...</p>
                 </div>
@@ -277,7 +277,7 @@ if (parsed.description) { set('description', parsed.description); count++ }
                   <textarea
                     value={instaText}
                     onChange={(e) => setInstaText(e.target.value)}
-                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834] resize-none text-gray-700 placeholder-gray-300"
+                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62] resize-none text-gray-700 placeholder-gray-300"
                     rows={6}
                     placeholder="Paste the Instagram post text here..."
                     autoFocus
@@ -291,7 +291,7 @@ if (parsed.description) { set('description', parsed.description); count++ }
                       type="button"
                       onClick={handleInstaParse}
                       disabled={!instaText.trim()}
-                      className="flex items-center gap-1.5 px-4 py-2 bg-[#448834] hover:bg-[#357228] disabled:opacity-40 text-white text-sm font-semibold rounded-lg transition-colors shrink-0 ml-4"
+                      className="flex items-center gap-1.5 px-4 py-2 bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-40 text-white text-sm font-semibold rounded-lg transition-colors shrink-0 ml-4"
                     >
                       <Sparkles size={14} />
                       Doldur
@@ -332,7 +332,7 @@ if (parsed.description) { set('description', parsed.description); count++ }
                 <input
                   value={form.slug}
                   onChange={(e) => { setSlugManual(true); set('slug', e.target.value) }}
-                  className="w-full border border-gray-200 rounded-r-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+                  className="w-full border border-gray-200 rounded-r-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
                   required
                   placeholder="market-ges-projesi"
                 />
@@ -410,14 +410,14 @@ if (parsed.description) { set('description', parsed.description); count++ }
                 <input
                   value={box.value}
                   onChange={(e) => updateStatBox(i, 'value', e.target.value)}
-                  className="flex-1 border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834] font-semibold"
+                  className="flex-1 border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62] font-semibold"
                   placeholder="11,25 kWp"
                 />
                 <span className="text-gray-300 text-sm">—</span>
                 <input
                   value={box.label}
                   onChange={(e) => updateStatBox(i, 'label', e.target.value)}
-                  className="flex-1 border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+                  className="flex-1 border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
                   placeholder="Featured Recipes"
                 />
                 <button type="button" onClick={() => removeStatBox(i)}
@@ -427,7 +427,7 @@ if (parsed.description) { set('description', parsed.description); count++ }
               </div>
             ))}
             <button type="button" onClick={addStatBox}
-              className="flex items-center gap-1.5 text-sm text-[#448834] hover:text-[#357228] font-medium py-1">
+              className="flex items-center gap-1.5 text-sm text-[#b33b62] hover:text-[#8e2c4d] font-medium py-1">
               <Plus size={15} /> Add Box
             </button>
           </div>
@@ -483,7 +483,7 @@ if (parsed.description) { set('description', parsed.description); count++ }
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-2 border-2 border-dashed border-gray-200 hover:border-[#448834] text-gray-400 hover:text-[#448834] rounded-xl px-4 py-4 text-sm font-medium transition-colors w-full justify-center"
+            className="flex items-center gap-2 border-2 border-dashed border-gray-200 hover:border-[#b33b62] text-gray-400 hover:text-[#b33b62] rounded-xl px-4 py-4 text-sm font-medium transition-colors w-full justify-center"
           >
             <Upload size={16} />
             Choose File (Photo or Video)
@@ -510,7 +510,7 @@ if (parsed.description) { set('description', parsed.description); count++ }
                 type="checkbox"
                 checked={form.published}
                 onChange={(e) => set('published', e.target.checked)}
-                className="w-4 h-4 accent-[#448834]"
+                className="w-4 h-4 accent-[#b33b62]"
               />
               <span className="text-sm font-medium text-gray-700">Publish on the site</span>
             </label>
@@ -526,7 +526,7 @@ if (parsed.description) { set('description', parsed.description); count++ }
           <button
             type="submit"
             disabled={saving}
-            className="bg-[#448834] hover:bg-[#357228] disabled:opacity-60 text-white font-bold px-7 py-2.5 rounded-xl transition-colors text-sm shadow-sm shadow-[#448834]/20"
+            className="bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-60 text-white font-bold px-7 py-2.5 rounded-xl transition-colors text-sm shadow-sm shadow-[#b33b62]/20"
           >
             {saving
               ? (uploadingMedia ? 'Uploading media...' : 'Saving...')
@@ -541,13 +541,13 @@ if (parsed.description) { set('description', parsed.description); count++ }
   )
 }
 
-const INPUT = 'w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]'
+const INPUT = 'w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]'
 
 function Section({ step, title, children }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
       <div className="flex items-center gap-3 px-6 py-4 border-b border-gray-50">
-        <span className="w-6 h-6 rounded-full bg-[#448834] text-white text-xs font-bold flex items-center justify-center shrink-0">{step}</span>
+        <span className="w-6 h-6 rounded-full bg-[#b33b62] text-white text-xs font-bold flex items-center justify-center shrink-0">{step}</span>
         <h2 className="font-semibold text-gray-900 text-sm">{title}</h2>
       </div>
       <div className="px-6 py-5 space-y-4">

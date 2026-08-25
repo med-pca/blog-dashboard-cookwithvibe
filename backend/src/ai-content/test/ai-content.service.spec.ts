@@ -85,6 +85,80 @@ function makeService(options: {
 
 const RUN = { jobId: 'job-1', isFinalAttempt: false }
 
+describe('AiContentService — structured recipe facts', () => {
+  it('persists the recipe facts alongside the article so a draft arrives complete', async () => {
+    const { service, created } = makeService()
+    await service.runJob(RUN)
+
+    expect(created[0]).toMatchObject({
+      prepMinutes: 15,
+      cookMinutes: 35,
+      servings: 4,
+      equipment: 'One sheet pan',
+      ingredients: ['6 bone-in chicken thighs', '2 tbsp honey', '4 garlic cloves, minced'],
+    })
+  })
+
+  it('stores nothing when the model says the article is not a recipe', async () => {
+    const { service, created } = makeService({
+      article: {
+        recipe: {
+          isRecipe: false,
+          prepMinutes: 20,
+          cookMinutes: 30,
+          servings: 4,
+          equipment: 'One sheet pan',
+          ingredients: ['2 tbsp honey'],
+        },
+      },
+    })
+    await service.runJob(RUN)
+
+    // isRecipe:false wins over whatever else came back — a technique article
+    // must not inherit an invented ingredient list.
+    expect(created[0]).toMatchObject({
+      prepMinutes: null,
+      cookMinutes: null,
+      servings: null,
+      equipment: null,
+      ingredients: [],
+    })
+  })
+
+  it('drops only the implausible field and still creates the draft', async () => {
+    const { service, created } = makeService({
+      article: {
+        recipe: {
+          isRecipe: true,
+          prepMinutes: 15,
+          cookMinutes: 99999,
+          servings: 0,
+          equipment: '  ',
+          ingredients: ['2 tbsp honey', '', '   '],
+        },
+      },
+    })
+    await service.runJob(RUN)
+
+    expect(created).toHaveLength(1)
+    expect(created[0]).toMatchObject({
+      prepMinutes: 15,
+      cookMinutes: null,
+      servings: null,
+      equipment: null,
+      ingredients: ['2 tbsp honey'],
+    })
+  })
+
+  it('still creates the draft when the model omits the recipe object entirely', async () => {
+    const { service, created } = makeService({ article: { recipe: undefined } })
+    await service.runJob(RUN)
+
+    expect(created).toHaveLength(1)
+    expect(created[0]).toMatchObject({ ingredients: [], servings: null })
+  })
+})
+
 describe('AiContentService — happy path', () => {
   it('creates a draft that is never published and carries no cover image', async () => {
     const { service, created, provider } = makeService()

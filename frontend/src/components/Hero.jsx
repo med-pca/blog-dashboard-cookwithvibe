@@ -27,11 +27,11 @@ export default function Hero() {
           <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-7xl font-bold text-white leading-[1.05] mb-5 sm:mb-6 drop-shadow-[0_1px_3px_rgba(0,0,0,0.3)]">
             Cook Better,
             <br />
-            <span className="text-[#f5ce31]">Eat Happier,</span>
+            <span className="text-[#f5a3b8]">Eat Happier,</span>
             <br />
             Every Day
             <br />
-            <span className="text-[#f5ce31]">At Home.</span>
+            <span className="text-[#f5a3b8]">At Home.</span>
           </h1>
 
           <p className="text-white/75 text-base sm:text-lg leading-relaxed mb-8 sm:mb-10 max-w-lg drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
@@ -42,7 +42,7 @@ export default function Hero() {
           <div className="flex flex-wrap gap-3">
             <Link
               to="/collections"
-              className="inline-flex items-center gap-2 bg-[#3d7a2e] hover:bg-[#357228] text-white font-bold px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl transition-colors shadow-lg shadow-black/30"
+              className="inline-flex items-center gap-2 bg-[#8e2c4d] hover:bg-[#8e2c4d] text-white font-bold px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl transition-colors shadow-lg shadow-black/30"
             >
               Explore Collections
               <ArrowRight size={17} />

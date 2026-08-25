@@ -161,7 +161,7 @@ export default function AiCampaignDetail() {
           <Sparkles size={15} />
           Generate one test draft
         </button>
-        <button onClick={() => run('now')} disabled={busy !== ''} className={`${buttonBase} bg-[#448834] text-white hover:bg-[#357228]`}>
+        <button onClick={() => run('now')} disabled={busy !== ''} className={`${buttonBase} bg-[#b33b62] text-white hover:bg-[#8e2c4d]`}>
           <Zap size={15} />
           Generate next article now
         </button>
@@ -226,7 +226,7 @@ export default function AiCampaignDetail() {
                 <div className="min-w-0">
                   <Link
                     to={`/rnl-panel/blog/${draft.id}/duzenle`}
-                    className="text-sm font-medium text-gray-800 hover:text-[#448834] truncate block"
+                    className="text-sm font-medium text-gray-800 hover:text-[#b33b62] truncate block"
                   >
                     {draft.title}
                   </Link>

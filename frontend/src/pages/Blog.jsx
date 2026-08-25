@@ -35,13 +35,13 @@ export default function Blog() {
       ? {
           "@context": "https://schema.org",
           "@type": "Blog",
-          name: "Pulse Recipe",
+          name: "CookWithVibe",
           url: `${SITE_URL}/recipes`,
           description:
             "Fresh recipes, practical kitchen tips, and seasonal food inspiration.",
           publisher: {
             "@type": "Organization",
-            name: "Pulse Recipe",
+            name: "CookWithVibe",
             url: SITE_URL,
           },
           blogPost: posts.map((p) => ({

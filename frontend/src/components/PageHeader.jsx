@@ -34,7 +34,7 @@ export default function PageHeader({ title, parent }) {
             </>
           )}
           <ChevronRight size={14} className="text-white/40" />
-          <span className="text-[#f5ce31] font-semibold max-w-50 truncate">
+          <span className="text-[#f5a3b8] font-semibold max-w-50 truncate">
             {title}
           </span>
         </nav>

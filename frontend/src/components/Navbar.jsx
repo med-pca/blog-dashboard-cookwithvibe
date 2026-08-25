@@ -83,7 +83,7 @@ export default function Navbar() {
           <Link
             to="/"
             className="flex items-center select-none"
-            aria-label="Pulse Recipe Home"
+            aria-label="CookWithVibe Home"
           >
             <Logo textWhite={transparent} className="h-16 w-auto" />
           </Link>
@@ -101,11 +101,11 @@ export default function Navbar() {
                       `font-medium text-base transition-colors relative group ${
                         transparent
                           ? isActive
-                            ? "text-[#448834] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
-                            : "text-white hover:text-[#448834] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
+                            ? "text-[#b33b62] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
+                            : "text-white hover:text-[#b33b62] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
                           : isActive
-                            ? "text-[#448834]"
-                            : "text-gray-700 hover:text-[#448834]"
+                            ? "text-[#b33b62]"
+                            : "text-gray-700 hover:text-[#b33b62]"
                       }`
                     }
                   >
@@ -113,7 +113,7 @@ export default function Navbar() {
                       <>
                         {l.label}
                         <span
-                          className={`absolute -bottom-1 left-0 h-0.5 bg-[#448834] transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
+                          className={`absolute -bottom-1 left-0 h-0.5 bg-[#b33b62] transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
                         />
                       </>
                     )}
@@ -136,11 +136,11 @@ export default function Navbar() {
                     className={`font-medium text-base transition-colors relative group inline-flex items-center gap-1 ${
                       transparent
                         ? isHizmetlerActive
-                          ? "text-[#448834] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
-                          : "text-white hover:text-[#448834] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
+                          ? "text-[#b33b62] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
+                          : "text-white hover:text-[#b33b62] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
                         : isHizmetlerActive
-                          ? "text-[#448834]"
-                          : "text-gray-700 hover:text-[#448834]"
+                          ? "text-[#b33b62]"
+                          : "text-gray-700 hover:text-[#b33b62]"
                     }`}
                   >
                     {l.label}
@@ -149,7 +149,7 @@ export default function Navbar() {
                       className={`transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
                     />
                     <span
-                      className={`absolute -bottom-1 left-0 h-0.5 bg-[#448834] transition-all duration-300 ${isHizmetlerActive ? "w-full" : "w-0 group-hover:w-full"}`}
+                      className={`absolute -bottom-1 left-0 h-0.5 bg-[#b33b62] transition-all duration-300 ${isHizmetlerActive ? "w-full" : "w-0 group-hover:w-full"}`}
                     />
                   </NavLink>
 
@@ -166,7 +166,7 @@ export default function Navbar() {
                       <div className="flex gap-6">
                         {l.dropdown.map((group) => (
                           <div key={group.category}>
-                            <p className="text-[10px] font-bold text-[#448834] uppercase tracking-widest mb-2 px-1">
+                            <p className="text-[10px] font-bold text-[#b33b62] uppercase tracking-widest mb-2 px-1">
                               {group.category}
                             </p>
                             <ul className="space-y-0.5">
@@ -177,8 +177,8 @@ export default function Navbar() {
                                     onClick={() => setDropdownOpen(false)}
                                     className={`block px-2 py-1.5 rounded-lg text-sm transition-colors whitespace-nowrap ${
                                       pathname === item.to
-                                        ? "bg-[#448834]/10 text-[#448834] font-semibold"
-                                        : "text-gray-700 hover:bg-gray-50 hover:text-[#448834]"
+                                        ? "bg-[#b33b62]/10 text-[#b33b62] font-semibold"
+                                        : "text-gray-700 hover:bg-gray-50 hover:text-[#b33b62]"
                                     }`}
                                   >
                                     {item.label}
@@ -223,7 +223,7 @@ export default function Navbar() {
                     end={l.to === "/"}
                     onClick={() => setOpen(false)}
                     className={({ isActive }) =>
-                      `font-medium py-2 border-b border-gray-100 transition-colors ${isActive ? "text-[#448834]" : "text-gray-700 hover:text-[#448834]"}`
+                      `font-medium py-2 border-b border-gray-100 transition-colors ${isActive ? "text-[#b33b62]" : "text-gray-700 hover:text-[#b33b62]"}`
                     }
                   >
                     {l.label}
@@ -236,7 +236,7 @@ export default function Navbar() {
                 <div key={l.to} className="border-b border-gray-100">
                   <button
                     onClick={() => setMobileGuidesOpen((o) => !o)}
-                    className={`w-full flex items-center justify-between font-medium py-2 transition-colors ${isHizmetlerActive ? "text-[#448834]" : "text-gray-700"}`}
+                    className={`w-full flex items-center justify-between font-medium py-2 transition-colors ${isHizmetlerActive ? "text-[#b33b62]" : "text-gray-700"}`}
                   >
                     {l.label}
                     <ChevronDown
@@ -250,13 +250,13 @@ export default function Navbar() {
                       <Link
                         to={l.to}
                         onClick={() => setOpen(false)}
-                        className="text-sm text-gray-500 hover:text-[#448834] transition-colors"
+                        className="text-sm text-gray-500 hover:text-[#b33b62] transition-colors"
                       >
                         All Recipes →
                       </Link>
                       {l.dropdown.map((group) => (
                         <div key={group.category}>
-                          <p className="text-[10px] font-bold text-[#448834] uppercase tracking-widest mb-1.5">
+                          <p className="text-[10px] font-bold text-[#b33b62] uppercase tracking-widest mb-1.5">
                             {group.category}
                           </p>
                           <ul className="space-y-1">
@@ -267,8 +267,8 @@ export default function Navbar() {
                                   onClick={() => setOpen(false)}
                                   className={`block text-sm py-0.5 transition-colors ${
                                     pathname === item.to
-                                      ? "text-[#448834] font-semibold"
-                                      : "text-gray-600 hover:text-[#448834]"
+                                      ? "text-[#b33b62] font-semibold"
+                                      : "text-gray-600 hover:text-[#b33b62]"
                                   }`}
                                 >
                                   {item.label}

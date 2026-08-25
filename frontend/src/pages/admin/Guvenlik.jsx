@@ -33,7 +33,7 @@ function PasswordInput({ value, onChange, placeholder, autoComplete, required = 
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
-        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
       />
       <button type="button" onClick={() => setShow(v => !v)}
         className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600" tabIndex={-1}>
@@ -130,7 +130,7 @@ function HesapBilgileri({ twoFaEnabled, onDone }) {
           className="w-full flex items-center justify-between px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors"
         >
           <div className="flex items-center gap-3">
-            <User size={18} className="text-[#448834]" />
+            <User size={18} className="text-[#b33b62]" />
             <div className="text-left">
               <p className="text-sm font-semibold text-gray-800">Username</p>
               <p className="text-xs text-gray-400">The name you use to sign in</p>
@@ -144,7 +144,7 @@ function HesapBilgileri({ twoFaEnabled, onDone }) {
           className="w-full flex items-center justify-between px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors"
         >
           <div className="flex items-center gap-3">
-            <Lock size={18} className="text-[#448834]" />
+            <Lock size={18} className="text-[#b33b62]" />
             <div className="text-left">
               <p className="text-sm font-semibold text-gray-800">Password</p>
               <p className="text-xs text-gray-400">Your account password</p>
@@ -181,7 +181,7 @@ function HesapBilgileri({ twoFaEnabled, onDone }) {
               pattern="[a-zA-Z0-9_-]+"
               autoComplete="off"
               required
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
             />
           </div>
         )}
@@ -210,7 +210,7 @@ function HesapBilgileri({ twoFaEnabled, onDone }) {
         {error && <ErrorMsg msg={error} />}
 
         <button type="submit"
-          className="w-full bg-[#448834] hover:bg-[#357228] text-white font-bold py-2.5 rounded-lg transition-colors text-sm">
+          className="w-full bg-[#b33b62] hover:bg-[#8e2c4d] text-white font-bold py-2.5 rounded-lg transition-colors text-sm">
           {twoFaEnabled ? 'Devam Et' : 'Change'}
         </button>
       </form>
@@ -227,8 +227,8 @@ function HesapBilgileri({ twoFaEnabled, onDone }) {
         </button>
 
         <div className="text-center py-2">
-          <div className="w-14 h-14 rounded-full bg-[#448834]/10 flex items-center justify-center mx-auto mb-3">
-            <ShieldCheck size={26} className="text-[#448834]" />
+          <div className="w-14 h-14 rounded-full bg-[#b33b62]/10 flex items-center justify-center mx-auto mb-3">
+            <ShieldCheck size={26} className="text-[#b33b62]" />
           </div>
           <p className="text-sm font-semibold text-gray-800">Two-Factor Authentication</p>
           <p className="text-xs text-gray-400 mt-1">
@@ -246,14 +246,14 @@ function HesapBilgileri({ twoFaEnabled, onDone }) {
           placeholder="000000"
           required
           autoFocus
-          className="w-full border border-gray-200 rounded-lg px-3 py-3 text-center text-2xl font-mono tracking-[0.5em] focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+          className="w-full border border-gray-200 rounded-lg px-3 py-3 text-center text-2xl font-mono tracking-[0.5em] focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
         />
 
         {error && <ErrorMsg msg={error} />}
 
         <button type="submit"
           disabled={loading || otpCode.length !== 6}
-          className="w-full bg-[#448834] hover:bg-[#357228] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2.5 rounded-lg transition-colors text-sm">
+          className="w-full bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2.5 rounded-lg transition-colors text-sm">
           {loading ? 'Verifying...' : 'Confirm and Change'}
         </button>
       </form>
@@ -373,7 +373,7 @@ export default function Guvenlik() {
 
           <div className="flex items-center gap-3">
             {twoFaStatus.enabled
-              ? <ShieldCheck size={20} className="text-[#448834]" />
+              ? <ShieldCheck size={20} className="text-[#b33b62]" />
               : <ShieldOff size={20} className="text-gray-300" />
             }
             <p className="text-sm text-gray-600">
@@ -390,7 +390,7 @@ export default function Guvenlik() {
                   Disable
                 </button>
               : <button onClick={startSetup} disabled={tfaLoading}
-                  className="w-full bg-[#448834] hover:bg-[#357228] disabled:opacity-60 text-white font-bold py-2.5 rounded-lg transition-colors text-sm">
+                  className="w-full bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-60 text-white font-bold py-2.5 rounded-lg transition-colors text-sm">
                   {tfaLoading ? 'Loading...' : 'Enable 2FA'}
                 </button>
           )}
@@ -450,7 +450,7 @@ export default function Guvenlik() {
                     type="text" inputMode="numeric" pattern="\d{6}" maxLength={6}
                     value={tfaCode} onChange={e => setTfaCode(e.target.value.replace(/\D/g, ''))}
                     placeholder="000000" required autoFocus
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-center text-xl font-mono tracking-[0.5em] focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-center text-xl font-mono tracking-[0.5em] focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
                   />
                 </div>
                 {tfaError && <ErrorMsg msg={tfaError} />}
@@ -460,7 +460,7 @@ export default function Guvenlik() {
                     Cancel
                   </button>
                   <button type="submit" disabled={tfaLoading || tfaCode.length !== 6}
-                    className="flex-1 bg-[#448834] hover:bg-[#357228] disabled:opacity-60 text-white font-bold py-2.5 rounded-lg text-sm">
+                    className="flex-1 bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-60 text-white font-bold py-2.5 rounded-lg text-sm">
                     {tfaLoading ? 'Verifying...' : 'Onayla'}
                   </button>
                 </div>

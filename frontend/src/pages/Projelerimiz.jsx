@@ -54,7 +54,7 @@ export default function Projelerimiz() {
       ? {
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          name: "Collections | Pulse Recipe",
+          name: "Collections | CookWithVibe",
           url: `${SITE_URL}/collections`,
           description:
             "Curated recipe collections for weeknights, prep, and seasonal cooking.",
@@ -82,7 +82,7 @@ export default function Projelerimiz() {
 
       <section className="bg-gray-50 border-b border-gray-100 pt-20 pb-12">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-[#448834] font-semibold text-xs uppercase tracking-widest mb-3">
+          <p className="text-[#b33b62] font-semibold text-xs uppercase tracking-widest mb-3">
             Curated Picks
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -103,7 +103,7 @@ export default function Projelerimiz() {
             { v: "Global", l: "Kitchen Audience" },
           ].map(({ v, l }) => (
             <div key={l} className="text-center px-6 py-4">
-              <p className="text-[#448834] font-bold text-4xl font-['Rajdhani'] leading-none mb-1">
+              <p className="text-[#b33b62] font-bold text-4xl font-['Rajdhani'] leading-none mb-1">
                 {v}
               </p>
               <p className="text-gray-400 text-xs font-medium uppercase tracking-widest mt-2">
@@ -133,7 +133,7 @@ export default function Projelerimiz() {
                 <Link
                   key={p.id}
                   to={`/collections/${p.slug}`}
-                  className="bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-[#448834]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group"
+                  className="bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-[#b33b62]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group"
                 >
                   <div className="h-56 overflow-hidden relative bg-gray-100">
                     {coverPhoto(p) ? (
@@ -177,10 +177,10 @@ export default function Projelerimiz() {
                         </span>
                       </div>
                       <span
-                        className="text-[#448834] font-bold text-lg font-['Rajdhani'] flex items-center gap-1"
+                        className="text-[#b33b62] font-bold text-lg font-['Rajdhani'] flex items-center gap-1"
                         title={`${recipeCount(p)} recipes in this collection`}
                       >
-                        <BookOpen size={13} className="text-[#448834]" />
+                        <BookOpen size={13} className="text-[#b33b62]" />
                         {recipeCount(p)}
                       </span>
                     </div>
@@ -207,7 +207,7 @@ export default function Projelerimiz() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-[#448834] hover:bg-[#357228] text-white font-bold px-8 py-4 rounded-xl transition-colors shadow-lg shadow-[#448834]/25"
+            className="inline-flex items-center gap-2 bg-[#b33b62] hover:bg-[#8e2c4d] text-white font-bold px-8 py-4 rounded-xl transition-colors shadow-lg shadow-[#b33b62]/25"
           >
             Contact Us
             <ArrowRight size={18} />

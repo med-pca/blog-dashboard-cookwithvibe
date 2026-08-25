@@ -32,8 +32,8 @@ async function bootstrap() {
 
   if (process.env.NODE_ENV !== 'production') {
     const config = new DocumentBuilder()
-      .setTitle('Renel Enerji API')
-      .setDescription('Renel Enerji backend API dokümantasyonu')
+      .setTitle('CookWithVibe API')
+      .setDescription('CookWithVibe backend API dokümantasyonu')
       .setVersion('1.0')
       .addCookieAuth('access_token')
       .build()

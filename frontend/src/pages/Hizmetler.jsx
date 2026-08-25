@@ -6,7 +6,7 @@ import { SITE_URL } from "../lib/site";
 const recipesJsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Guides | Pulse Recipe",
+  name: "Guides | CookWithVibe",
   url: `${SITE_URL}/guides`,
   description:
     "Practical cooking guides: meal prep, weeknight dinners, budget cooking, kitchen setup and the techniques underneath every recipe.",

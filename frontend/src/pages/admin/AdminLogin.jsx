@@ -102,7 +102,7 @@ export default function AdminLogin() {
                 type="text"
                 value={form.username}
                 onChange={(e) => setForm({ ...form, username: e.target.value })}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
                 required
                 autoFocus
                 autoComplete="username"
@@ -116,7 +116,7 @@ export default function AdminLogin() {
                   type={showPassword ? 'text' : 'password'}
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
                   required
                   autoComplete="current-password"
                 />
@@ -136,7 +136,7 @@ export default function AdminLogin() {
                 type="checkbox"
                 checked={remember}
                 onChange={(e) => setRemember(e.target.checked)}
-                className="w-4 h-4 rounded accent-[#448834]"
+                className="w-4 h-4 rounded accent-[#b33b62]"
               />
               <span className="text-sm text-gray-600">Remember me</span>
             </label>
@@ -146,7 +146,7 @@ export default function AdminLogin() {
             <button
               type="submit"
               disabled={loading || rateLimited}
-              className="w-full bg-[#448834] hover:bg-[#357228] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2.5 rounded-lg transition-colors"
+              className="w-full bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2.5 rounded-lg transition-colors"
             >
               {loading ? 'Signing in...' : rateLimited ? 'Please wait...' : 'Sign In'}
             </button>
@@ -154,8 +154,8 @@ export default function AdminLogin() {
         ) : (
           <form onSubmit={handleVerify2FA} className="space-y-4">
             <div className="flex flex-col items-center text-center mb-2">
-              <div className="bg-[#448834]/10 rounded-full p-3 mb-3">
-                <ShieldCheck size={24} className="text-[#448834]" />
+              <div className="bg-[#b33b62]/10 rounded-full p-3 mb-3">
+                <ShieldCheck size={24} className="text-[#b33b62]" />
               </div>
               <p className="text-sm font-medium text-gray-800">Two-Factor Authentication</p>
               <p className="text-xs text-gray-400 mt-1">Enter the 6-digit code from your authenticator app</p>
@@ -171,7 +171,7 @@ export default function AdminLogin() {
                 value={otpCode}
                 onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ''))}
                 placeholder="000000"
-                className="w-full border border-gray-200 rounded-lg px-3 py-3 text-center text-2xl font-mono tracking-[0.5em] focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+                className="w-full border border-gray-200 rounded-lg px-3 py-3 text-center text-2xl font-mono tracking-[0.5em] focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
                 required
               />
             </div>
@@ -181,7 +181,7 @@ export default function AdminLogin() {
             <button
               type="submit"
               disabled={loading || rateLimited || otpCode.length !== 6}
-              className="w-full bg-[#448834] hover:bg-[#357228] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2.5 rounded-lg transition-colors"
+              className="w-full bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2.5 rounded-lg transition-colors"
             >
               {loading ? 'Verifying...' : rateLimited ? 'Please wait...' : 'Verify'}
             </button>

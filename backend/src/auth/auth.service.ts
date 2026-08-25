@@ -190,7 +190,7 @@ export class AuthService {
   async generateSetupSecret(): Promise<{ secret: string; qrCodeUrl: string }> {
     const adminUsername = this.cfg.get<string>('ADMIN_USERNAME') || 'admin'
     const secret = authenticator.generateSecret()
-    const otpauth = authenticator.keyuri(adminUsername, 'RenEl Admin', secret)
+    const otpauth = authenticator.keyuri(adminUsername, 'CookWithVibe Admin', secret)
     const qrCodeUrl = await qrcode.toDataURL(otpauth)
     return { secret, qrCodeUrl }
   }

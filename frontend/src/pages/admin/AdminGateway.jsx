@@ -6,10 +6,10 @@ export default function AdminGateway() {
   return (
     <>
       <SEO title="Admin Access" noindex />
-      <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white -mt-16">
+      <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-paper -mt-16">
         <div className="text-center max-w-lg">
           <div className="flex justify-center mb-6">
-            <Shield size={80} className="text-[#448834]" strokeWidth={1.5} />
+            <Shield size={80} className="text-[#b33b62]" strokeWidth={1.5} />
           </div>
 
           <h1 className="text-2xl font-bold text-gray-900 mb-3">
@@ -22,7 +22,7 @@ export default function AdminGateway() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               to="/"
-              className="inline-flex items-center justify-center gap-2 bg-[#448834] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#3a7329] transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-[#b33b62] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#8e2c4d] transition-colors"
             >
               <Home size={18} />
               Back to Home

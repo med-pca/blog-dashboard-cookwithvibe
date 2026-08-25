@@ -52,7 +52,7 @@ const FONT_SIZES = ['10px', '12px', '14px', '16px', '18px', '20px', '24px', '28p
 
 const COLORS = [
   '#000000', '#374151', '#6B7280', '#9CA3AF', '#D1FAE5',
-  '#DC2626', '#EA580C', '#D97706', '#16A34A', '#448834',
+  '#DC2626', '#EA580C', '#D97706', '#16A34A', '#b33b62',
   '#2563EB', '#7C3AED', '#DB2777', '#FFFFFF', '#F3F4F6',
 ]
 
@@ -65,7 +65,7 @@ function ToolbarButton({ onClick, active, disabled, title, children }) {
       title={title}
       className={`p-1.5 rounded transition-colors ${
         active
-          ? 'bg-[#448834] text-white'
+          ? 'bg-[#b33b62] text-white'
           : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
       } disabled:opacity-30`}
     >
@@ -204,8 +204,8 @@ function LinkModal({ open, initialUrl, onApply, onRemove, onClose }) {
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 bg-[#448834]/10 rounded-lg flex items-center justify-center">
-              <LinkIcon size={16} className="text-[#448834]" />
+            <div className="w-8 h-8 bg-[#b33b62]/10 rounded-lg flex items-center justify-center">
+              <LinkIcon size={16} className="text-[#b33b62]" />
             </div>
             <h3 className="font-semibold text-gray-900 text-sm">Add Link</h3>
           </div>
@@ -221,7 +221,7 @@ function LinkModal({ open, initialUrl, onApply, onRemove, onClose }) {
         {/* Body */}
         <div className="px-5 py-5">
           <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">URL Adresi</label>
-          <div className="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2.5 focus-within:border-[#448834] focus-within:ring-2 focus-within:ring-[#448834]/20 transition-all">
+          <div className="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2.5 focus-within:border-[#b33b62] focus-within:ring-2 focus-within:ring-[#b33b62]/20 transition-all">
             <ExternalLink size={15} className="text-gray-400 shrink-0" />
             <input
               ref={inputRef}
@@ -241,7 +241,7 @@ function LinkModal({ open, initialUrl, onApply, onRemove, onClose }) {
           <button
             type="button"
             onClick={() => onApply(url)}
-            className="flex-1 bg-[#448834] hover:bg-[#357228] text-white font-semibold text-sm py-2.5 rounded-xl transition-colors"
+            className="flex-1 bg-[#b33b62] hover:bg-[#8e2c4d] text-white font-semibold text-sm py-2.5 rounded-xl transition-colors"
           >
             Uygula
           </button>
@@ -280,7 +280,7 @@ export default function RichTextEditor({ value, onChange }) {
       Color,
       FontFamily,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
-      Link.configure({ openOnClick: false, HTMLAttributes: { class: 'text-[#448834] underline' } }),
+      Link.configure({ openOnClick: false, HTMLAttributes: { class: 'text-[#b33b62] underline' } }),
     ],
     content: value || '',
     onUpdate: ({ editor }) => onChange(editor.getHTML()),
@@ -363,7 +363,7 @@ export default function RichTextEditor({ value, onChange }) {
       onRemove={removeLink}
       onClose={() => setLinkModal({ open: false, url: '' })}
     />
-    <div className="border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#448834]/30 focus-within:border-[#448834]">
+    <div className="border border-gray-200 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#b33b62]/30 focus-within:border-[#b33b62]">
       {/* Toolbar */}
       <div className="flex flex-wrap items-center gap-0.5 px-2 py-2 border-b border-gray-100 bg-gray-50">
 
@@ -494,11 +494,11 @@ export default function RichTextEditor({ value, onChange }) {
         .ProseMirror ul { list-style-type: disc; padding-left: 1.5em; margin: 0.4em 0; }
         .ProseMirror ol { list-style-type: decimal; padding-left: 1.5em; margin: 0.4em 0; }
         .ProseMirror hr { border: none; border-top: 2px solid #e5e7eb; margin: 1em 0; }
-        .ProseMirror blockquote { border-left: 4px solid #448834; padding-left: 1em; color: #6b7280; margin: 0.5em 0; }
+        .ProseMirror blockquote { border-left: 4px solid #b33b62; padding-left: 1em; color: #6b7280; margin: 0.5em 0; }
         .ProseMirror code { background: #f3f4f6; padding: 0.1em 0.3em; border-radius: 4px; font-family: monospace; }
         .ProseMirror pre { background: #1f2937; color: #f9fafb; padding: 1em; border-radius: 8px; overflow-x: auto; }
         .ProseMirror pre code { background: none; padding: 0; }
-        .ProseMirror a { color: #448834; text-decoration: underline; }
+        .ProseMirror a { color: #b33b62; text-decoration: underline; }
         .ProseMirror p.is-editor-empty:first-child::before { content: attr(data-placeholder); color: #9ca3af; pointer-events: none; float: left; height: 0; }
       `}</style>
     </div>

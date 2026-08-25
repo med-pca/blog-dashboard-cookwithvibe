@@ -9,7 +9,7 @@ export default function LoadError({
       {onRetry && (
         <button
           onClick={onRetry}
-          className="text-sm font-semibold text-[#448834] hover:text-[#357228] transition-colors"
+          className="text-sm font-semibold text-[#b33b62] hover:text-[#8e2c4d] transition-colors"
         >
           Try again
         </button>

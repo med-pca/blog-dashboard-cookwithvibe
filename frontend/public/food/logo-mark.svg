@@ -1,19 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" fill="none" role="img" aria-label="Flavor Journal">
-  <!-- Chef hat puff -->
-  <g fill="#448834">
-    <circle cx="120" cy="70" r="42"/>
-    <circle cx="66" cy="100" r="36"/>
-    <circle cx="174" cy="100" r="36"/>
-    <rect x="60" y="94" width="120" height="80" rx="12"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 14 220 220" width="220" height="220" fill="none" role="img" aria-label="CookWithVibe">
+  <!-- Steam drawn as three waveform ribbons: the "vibe" half of the name.
+       Amplitude is constant and the heights step up toward the middle, so the
+       group reads as a rhythm rather than as three random curls. Centred on
+       the bowl, not on the whole mark, so it looks like it is rising from it. -->
+  <g stroke="#c2683f" stroke-width="11" stroke-linecap="round" fill="none">
+    <path d="M66 130 Q82 116 66 102 Q50 88 66 74" />
+    <path d="M102 138 Q118 122 102 106 Q86 90 102 74 Q118 58 102 42" />
+    <path d="M138 130 Q154 116 138 102 Q122 88 138 74" />
   </g>
-  <!-- Fork mark -->
-  <g fill="#f5ce31">
-    <rect x="105" y="66" width="6" height="30" rx="3"/>
-    <rect x="117" y="66" width="6" height="30" rx="3"/>
-    <rect x="129" y="66" width="6" height="30" rx="3"/>
-    <rect x="104" y="94" width="32" height="12" rx="6"/>
-    <rect x="114" y="104" width="12" height="42" rx="6"/>
-  </g>
-  <!-- Hat band -->
-  <rect x="62" y="182" width="116" height="34" rx="12" fill="#f5ce31"/>
+  <!-- Skillet. The bowl is written as explicit cubics rather than an elliptical
+       arc: a chord of exactly 2·rx is the degenerate case for A, and renderers
+       disagree about how deep to draw it. -->
+  <path d="M30 150 H178 V160 C176 196 146 212 104 212 C62 212 32 196 30 160 Z" fill="#b33b62" />
+  <!-- Handle, angled up and away so the silhouette stays open. -->
+  <path d="M180 154 L218 140" stroke="#b33b62" stroke-width="17" stroke-linecap="round" fill="none" />
 </svg>

@@ -40,7 +40,7 @@ export default function LegalPage({ title, description, updated, intro, sections
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer nofollow"
-                            className="text-sm text-[#448834] hover:underline break-words"
+                            className="text-sm text-[#b33b62] hover:underline break-words"
                           >
                             {label}
                           </a>

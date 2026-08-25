@@ -3,6 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { DeepPartial, In, Repository } from 'typeorm'
 import { BlogService } from '../blog/blog.service'
 import { BlogPost } from '../blog/entities/blog-post.entity'
+import {
+  EMPTY_RECIPE_DETAILS,
+  normalizeEquipment,
+  normalizeIngredients,
+  normalizeMinutes,
+  normalizeServings,
+  type RecipeDetails,
+} from '../blog/recipe-details'
 import { sanitizeAiHtml, stripHtml } from '../common/html-sanitize'
 import { isUniqueViolation } from '../common/errors'
 import { RESERVED_SLUGS } from '../common/reserved-slugs'
@@ -43,6 +51,17 @@ function removeInternalArticleSections(html: string): string {
   )
   return clean.trim()
 }
+
+// What survives validation and is handed to createDraft: the article fields
+// plus the structured recipe facts.
+type ValidatedDraft = {
+  title: string
+  slug: string
+  excerpt: string
+  metaDescription: string
+  content: string
+  imagePrompt: string
+} & RecipeDetails
 
 export interface RunJobOptions {
   jobId: string
@@ -215,14 +234,7 @@ export class AiContentService {
 
   // Everything the model may get wrong is corrected or rejected here — the
   // blog DTO is bypassed on this path, so the limits are re-applied by hand.
-  private validateArticle(article: GeneratedArticle, topic: string): {
-    title: string
-    slug: string
-    excerpt: string
-    metaDescription: string
-    content: string
-    imagePrompt: string
-  } {
+  private validateArticle(article: GeneratedArticle, topic: string): ValidatedDraft {
     if (!article || typeof article !== 'object') {
       throw new AiPermanentError('INVALID_SHAPE', 'Model returned no article object')
     }
@@ -257,19 +269,37 @@ export class AiContentService {
     const imagePrompt = stripHtml(String(article.imagePrompt ?? '')).trim().slice(0, 1200)
     if (!imagePrompt) throw new AiPermanentError('EMPTY_IMAGE_PROMPT', 'Model returned no dish description for the cover image')
 
-    return { title, slug, excerpt, metaDescription, content, imagePrompt }
+    return { title, slug, excerpt, metaDescription, content, imagePrompt, ...this.validateRecipe(article, title) }
+  }
+
+  // The structured recipe facts are a convenience for the page layout, never a
+  // gate on the article: a model that returns a nonsensical number loses that
+  // one field, and a draft with no usable list still reaches an admin, who can
+  // fill it in from the article body before publishing. Only the explicit
+  // isRecipe:false case is trusted to mean "there is nothing to show".
+  private validateRecipe(article: GeneratedArticle, title: string): RecipeDetails {
+    const recipe = article?.recipe
+    if (!recipe || typeof recipe !== 'object' || recipe.isRecipe !== true) {
+      return { ...EMPTY_RECIPE_DETAILS }
+    }
+
+    const details: RecipeDetails = {
+      prepMinutes: normalizeMinutes(recipe.prepMinutes),
+      cookMinutes: normalizeMinutes(recipe.cookMinutes),
+      servings: normalizeServings(recipe.servings),
+      equipment: normalizeEquipment(recipe.equipment),
+      ingredients: normalizeIngredients(recipe.ingredients),
+    }
+
+    if (details.ingredients.length === 0) {
+      this.logger.warn(`Draft "${title}" was marked as a recipe but returned no usable ingredient list`)
+    }
+    return details
   }
 
   // Publication stays a human decision: published/publishedAt/coverImage are
   // forced here and are not part of the model's schema at all.
-  private async createDraft(draft: {
-    title: string
-    slug: string
-    excerpt: string
-    metaDescription: string
-    content: string
-    imagePrompt: string
-  }, collectionId: string): Promise<BlogPost> {
+  private async createDraft(draft: ValidatedDraft, collectionId: string): Promise<BlogPost> {
     const base = draft.slug
     for (let attempt = 1; attempt <= SLUG_ATTEMPTS; attempt++) {
       const candidate = attempt === 1 ? base : `${base.slice(0, SLUG_MAX - 4)}-${attempt}`
@@ -291,6 +321,11 @@ export class AiContentService {
           aiImagePrompt: draft.imagePrompt,
           aiGenerated: true,
           collectionId,
+          prepMinutes: draft.prepMinutes,
+          cookMinutes: draft.cookMinutes,
+          servings: draft.servings,
+          equipment: draft.equipment,
+          ingredients: draft.ingredients,
         } as unknown as DeepPartial<BlogPost>)
       } catch (err) {
         // Another writer took the slug between the count and the insert.

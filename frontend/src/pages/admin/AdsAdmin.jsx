@@ -37,7 +37,7 @@ const PLACEMENTS = [
 ]
 
 const INPUT =
-  'w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]'
+  'w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]'
 
 export default function AdsAdmin() {
   const { logout } = useAdminAuth()
@@ -113,7 +113,7 @@ export default function AdsAdmin() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-8">
       <div className="flex items-center gap-3 mb-1">
-        <Megaphone size={20} className="text-[#448834]" />
+        <Megaphone size={20} className="text-[#b33b62]" />
         <h1 className="text-xl font-bold text-gray-900">Google AdSense</h1>
       </div>
       <p className="text-sm text-gray-400 mb-6">
@@ -129,7 +129,7 @@ export default function AdsAdmin() {
               type="button"
               onClick={() => setForm((f) => ({ ...f, enabled: !f.enabled }))}
               className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
-                form.enabled ? 'bg-[#448834]' : 'bg-gray-200'
+                form.enabled ? 'bg-[#b33b62]' : 'bg-gray-200'
               }`}
               aria-label="Toggle ads"
             >
@@ -226,7 +226,7 @@ export default function AdsAdmin() {
                 href="/ads.txt"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-[#448834] hover:underline"
+                className="font-mono text-[#b33b62] hover:underline"
               >
                 /ads.txt
               </a>{' '}
@@ -240,10 +240,10 @@ export default function AdsAdmin() {
               <button
                 type="button"
                 onClick={copyAdsTxt}
-                className="shrink-0 p-2.5 rounded-lg text-gray-400 hover:text-[#448834] hover:bg-green-50 transition-colors"
+                className="shrink-0 p-2.5 rounded-lg text-gray-400 hover:text-[#b33b62] hover:bg-green-50 transition-colors"
                 title="Copy the ads.txt line"
               >
-                {copied ? <Check size={16} className="text-[#448834]" /> : <Copy size={16} />}
+                {copied ? <Check size={16} className="text-[#b33b62]" /> : <Copy size={16} />}
               </button>
             </div>
           </div>
@@ -257,12 +257,12 @@ export default function AdsAdmin() {
           <button
             type="submit"
             disabled={!canSave}
-            className="inline-flex items-center gap-2 bg-[#448834] hover:bg-[#357228] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm"
+            className="inline-flex items-center gap-2 bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm"
           >
             <Save size={16} />
             {saving ? 'Saving...' : 'Save Changes'}
           </button>
-          {saved && <span className="text-sm text-[#448834] font-medium">Saved</span>}
+          {saved && <span className="text-sm text-[#b33b62] font-medium">Saved</span>}
           <a
             href="https://www.google.com/adsense/"
             target="_blank"

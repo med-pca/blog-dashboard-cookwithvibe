@@ -96,7 +96,7 @@ function SortableRow({ post, collectionName, onDelete, deletingId }) {
       </td>
       <td className="px-5 py-4">
         {collectionName ? (
-          <span className="inline-block text-xs font-medium text-[#448834] bg-green-50 px-2 py-1 rounded-full">
+          <span className="inline-block text-xs font-medium text-[#b33b62] bg-green-50 px-2 py-1 rounded-full">
             {collectionName}
           </span>
         ) : (
@@ -127,7 +127,7 @@ function SortableRow({ post, collectionName, onDelete, deletingId }) {
         <div className="flex items-center gap-2 justify-end">
           <Link
             to={`/rnl-panel/blog/${post.id}/duzenle`}
-            className="p-2 text-gray-400 hover:text-[#448834] hover:bg-green-50 rounded-lg transition-colors"
+            className="p-2 text-gray-400 hover:text-[#b33b62] hover:bg-green-50 rounded-lg transition-colors"
           >
             <Pencil size={16} />
           </Link>
@@ -204,13 +204,13 @@ export default function BlogAdmin() {
           <p className="text-sm text-gray-400 mt-0.5">
             {posts.length} posts
             {saving && (
-              <span className="ml-2 text-[#448834]">· kaydediliyor...</span>
+              <span className="ml-2 text-[#b33b62]">· kaydediliyor...</span>
             )}
           </p>
         </div>
         <Link
           to="/rnl-panel/blog/yeni"
-          className="inline-flex items-center gap-2 bg-[#448834] hover:bg-[#357228] text-white font-bold px-4 py-2 rounded-lg transition-colors text-sm"
+          className="inline-flex items-center gap-2 bg-[#b33b62] hover:bg-[#8e2c4d] text-white font-bold px-4 py-2 rounded-lg transition-colors text-sm"
         >
           <Plus size={16} />
           New Post
@@ -224,7 +224,7 @@ export default function BlogAdmin() {
           <p className="mb-4">No blog posts yet.</p>
           <Link
             to="/rnl-panel/blog/yeni"
-            className="text-[#448834] font-semibold hover:underline"
+            className="text-[#b33b62] font-semibold hover:underline"
           >
             Add the first post
           </Link>

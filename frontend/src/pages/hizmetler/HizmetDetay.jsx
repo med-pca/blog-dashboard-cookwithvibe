@@ -413,10 +413,10 @@ export default function HizmetDetay() {
         url: pageUrl,
         mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
         inLanguage: "en-US",
-        author: { "@type": "Organization", name: "Pulse Recipe", url: SITE_URL },
+        author: { "@type": "Organization", name: "CookWithVibe", url: SITE_URL },
         publisher: {
           "@type": "Organization",
-          name: "Pulse Recipe",
+          name: "CookWithVibe",
           url: SITE_URL,
           logo: {
             "@type": "ImageObject",
@@ -463,7 +463,7 @@ export default function HizmetDetay() {
                 to={`/guides/${s.slug}`}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap shrink-0 transition-colors ${
                   active
-                    ? "bg-[#448834] text-white"
+                    ? "bg-[#b33b62] text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
@@ -480,7 +480,7 @@ export default function HizmetDetay() {
           <div className="flex gap-7 items-start">
             <aside className="hidden lg:block w-64 shrink-0 sticky top-24">
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <div className="bg-[#448834] px-5 py-4">
+                <div className="bg-[#b33b62] px-5 py-4">
                   <p className="text-white font-bold text-sm">Our Guides</p>
                 </div>
                 <nav className="divide-y divide-gray-50">
@@ -493,21 +493,21 @@ export default function HizmetDetay() {
                         to={`/guides/${s.slug}`}
                         className={`flex items-center gap-3 px-5 py-3.5 text-sm transition-colors group ${
                           active
-                            ? "bg-[#448834]/8 text-[#448834] font-semibold"
-                            : "text-gray-600 hover:bg-gray-50 hover:text-[#448834]"
+                            ? "bg-[#b33b62]/8 text-[#b33b62] font-semibold"
+                            : "text-gray-600 hover:bg-gray-50 hover:text-[#b33b62]"
                         }`}
                       >
                         <SIcon
                           size={15}
                           className={
                             active
-                              ? "text-[#448834]"
-                              : "text-gray-400 group-hover:text-[#448834]"
+                              ? "text-[#b33b62]"
+                              : "text-gray-400 group-hover:text-[#b33b62]"
                           }
                         />
                         <span className="flex-1 leading-snug">{s.title}</span>
                         {active && (
-                          <ChevronRight size={13} className="text-[#448834]" />
+                          <ChevronRight size={13} className="text-[#b33b62]" />
                         )}
                       </Link>
                     );
@@ -527,7 +527,7 @@ export default function HizmetDetay() {
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/65 via-black/15 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-7">
-                  <span className="inline-flex items-center gap-1.5 bg-[#448834] text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                  <span className="inline-flex items-center gap-1.5 bg-[#b33b62] text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
                     <Icon size={11} />
                     OUR GUIDES
                   </span>
@@ -538,8 +538,8 @@ export default function HizmetDetay() {
               </div>
 
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 sm:p-8 mb-4 sm:mb-6">
-                <p className="text-[#448834] font-semibold text-xs uppercase tracking-widest mb-3">
-                  Pulse Recipe
+                <p className="text-[#b33b62] font-semibold text-xs uppercase tracking-widest mb-3">
+                  CookWithVibe
                 </p>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-5">
                   {service.title}
@@ -571,7 +571,7 @@ export default function HizmetDetay() {
                     <div key={f} className="flex items-start gap-3">
                       <CheckCircle
                         size={16}
-                        className="text-[#448834] shrink-0 mt-0.5"
+                        className="text-[#b33b62] shrink-0 mt-0.5"
                       />
                       <span className="text-gray-700 text-sm leading-relaxed">
                         {f}
@@ -610,9 +610,9 @@ export default function HizmetDetay() {
                       >
                         <ChevronRight
                           size={16}
-                          className="text-[#448834] shrink-0 mt-0.5"
+                          className="text-[#b33b62] shrink-0 mt-0.5"
                         />
-                        <span className="text-gray-700 text-sm leading-relaxed group-hover:text-[#448834] transition-colors">
+                        <span className="text-gray-700 text-sm leading-relaxed group-hover:text-[#b33b62] transition-colors">
                           {post.title}
                         </span>
                       </Link>

@@ -236,14 +236,14 @@ describe('InstagramParseService.parseInstagram — LLM çıktısı şema doğrul
       expect(request.instructions).not.toContain('bir gönderi metni')
     })
 
-    // pulserecipe.com is English: the model must be told to write English
+    // cookwithvibe.com is English: the model must be told to write English
     // recipe-collection content, never Turkish solar content.
-    it('instructs the model to write English content for pulserecipe.com', async () => {
+    it('instructs the model to write English content for cookwithvibe.com', async () => {
       const { service, generateJson } = makeService(gecerli)
       await service.parseInstagram('Weeknight Dinners')
 
       const { instructions } = generateJson.mock.calls[0][0]
-      expect(instructions).toContain('pulserecipe.com')
+      expect(instructions).toContain('cookwithvibe.com')
       expect(instructions).toMatch(/write in natural,? fluent english/i)
       // No leftover Turkish-solar vocabulary from the previous project.
       expect(instructions.toLowerCase()).not.toContain('renel')

@@ -19,7 +19,7 @@ function FaqItem({ faq, isOpen, onToggle }) {
         </span>
         <ChevronDown
           size={18}
-          className={`text-[#448834] shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+          className={`text-[#b33b62] shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
       {isOpen && (
@@ -79,7 +79,7 @@ export default function SSS() {
 
       <section className="bg-gray-50 border-b border-gray-100 pt-20 pb-12">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-[#448834] font-semibold text-xs uppercase tracking-widest mb-3">
+          <p className="text-[#b33b62] font-semibold text-xs uppercase tracking-widest mb-3">
             FAQ
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -134,7 +134,7 @@ export default function SSS() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-[#448834] hover:bg-[#357228] text-white font-bold px-8 py-4 rounded-xl transition-colors shadow-lg shadow-[#448834]/25"
+            className="inline-flex items-center gap-2 bg-[#b33b62] hover:bg-[#8e2c4d] text-white font-bold px-8 py-4 rounded-xl transition-colors shadow-lg shadow-[#b33b62]/25"
           >
             Contact Us
             <ArrowRight size={18} />

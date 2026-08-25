@@ -54,7 +54,7 @@ function SortableRow({ faq, onDelete, onEdit, deletingId }) {
           )}
           <button
             onClick={() => onEdit(faq)}
-            className="p-2 text-gray-400 hover:text-[#448834] hover:bg-green-50 rounded-lg transition-colors"
+            className="p-2 text-gray-400 hover:text-[#b33b62] hover:bg-green-50 rounded-lg transition-colors"
           >
             <Pencil size={17} />
           </button>
@@ -134,12 +134,12 @@ export default function SSSAdmin() {
           <h1 className="text-xl font-bold text-gray-900">S.S.S.</h1>
           <p className="text-sm text-gray-400 mt-0.5">
             {faqs.length} soru
-            {saving && <span className="ml-2 text-[#448834]">· kaydediliyor...</span>}
+            {saving && <span className="ml-2 text-[#b33b62]">· kaydediliyor...</span>}
           </p>
         </div>
         <button
           onClick={() => setEditing({})}
-          className="inline-flex items-center gap-2 bg-[#448834] hover:bg-[#357228] text-white font-bold px-4 py-2 rounded-lg transition-colors text-sm"
+          className="inline-flex items-center gap-2 bg-[#b33b62] hover:bg-[#8e2c4d] text-white font-bold px-4 py-2 rounded-lg transition-colors text-sm"
         >
           <Plus size={16} />
           New Question
@@ -151,7 +151,7 @@ export default function SSSAdmin() {
       ) : faqs.length === 0 ? (
         <div className="text-center py-20 text-gray-400">
           <p className="mb-4">No questions yet.</p>
-          <button onClick={() => setEditing({})} className="text-[#448834] font-semibold hover:underline">
+          <button onClick={() => setEditing({})} className="text-[#b33b62] font-semibold hover:underline">
             Add the first question
           </button>
         </div>

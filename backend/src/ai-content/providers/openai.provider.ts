@@ -15,7 +15,7 @@ import type {
 const ARTICLE_SCHEMA = {
   type: 'object',
   additionalProperties: false,
-  required: ['title', 'slug', 'excerpt', 'metaDescription', 'content', 'imagePrompt', 'suggestedKeywords'],
+  required: ['title', 'slug', 'excerpt', 'metaDescription', 'content', 'imagePrompt', 'suggestedKeywords', 'recipe'],
   properties: {
     title: { type: 'string', description: 'Article title, at most 255 characters.' },
     slug: {
@@ -34,6 +34,46 @@ const ARTICLE_SCHEMA = {
       description: 'Concise visual description of the finished dish, using only ingredients and garnishes present in the recipe.',
     },
     suggestedKeywords: { type: 'array', items: { type: 'string' }, description: 'Three to eight keywords.' },
+    // Structured duplicate of facts the article body already states, so the
+    // recipe page can lay them out instead of parsing prose. Strict mode
+    // requires every key, hence the explicit nulls for non-recipe articles.
+    recipe: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['isRecipe', 'prepMinutes', 'cookMinutes', 'servings', 'equipment', 'ingredients'],
+      properties: {
+        isRecipe: {
+          type: 'boolean',
+          description:
+            'True only when the article gives a cookable recipe with an ingredient list. False for technique, planning, shopping or explainer articles.',
+        },
+        prepMinutes: {
+          type: ['integer', 'null'],
+          description:
+            'Hands-on preparation time in whole minutes, excluding cooking. Null when isRecipe is false or the article states no prep time.',
+        },
+        cookMinutes: {
+          type: ['integer', 'null'],
+          description:
+            'Cooking time in whole minutes, excluding preparation. Include unattended oven, simmering or chilling time. Null when isRecipe is false.',
+        },
+        servings: {
+          type: ['integer', 'null'],
+          description: 'Number of people the stated quantities serve. Null when isRecipe is false.',
+        },
+        equipment: {
+          type: ['string', 'null'],
+          description:
+            'The defining cookware in at most 120 characters, as a short noun phrase such as "One roasting tray" or "Blender and fine sieve". Null when isRecipe is false.',
+        },
+        ingredients: {
+          type: 'array',
+          items: { type: 'string' },
+          description:
+            'One line per ingredient with its quantity, exactly as the article lists it, for example "800 g small waxy potatoes, halved if larger than a walnut". Plain text, no HTML, no bullet characters, no numbering. Empty array when isRecipe is false.',
+        },
+      },
+    },
   },
 } as const
 
@@ -66,6 +106,9 @@ const EDITORIAL_RULES = [
   'Give no medical, legal or financial advice that could be unsafe; add no health claims.',
   'Do not reference images inside the article body.',
   'The imagePrompt must describe the exact finished dish from this recipe, including its visible ingredients, texture, cooking method and plating. Never add a garnish or ingredient absent from the recipe.',
+  'Fill the recipe object from the article you just wrote, never from a different or idealised version of the dish. Every ingredient line, the serving count, the equipment and both timings must match the article body exactly; prepMinutes plus cookMinutes must equal the total time the article claims.',
+  'Set recipe.isRecipe to false for technique, planning, shopping and explainer articles, and then set every other recipe field to null with an empty ingredients array. Never invent an ingredient list for an article that does not contain one.',
+  'Keep the ingredient list in the article body as well: the recipe object is a structured copy for layout, not a replacement for the written recipe.',
   'The content field is reader-facing article HTML only. Never put imagePrompt, suggestedKeywords, SEO keywords, collection alignment, editorial notes, review notes, campaign instructions or JSON field labels inside content.',
   'Do not repeat the exact article title as an h2. Do not add generic Overview, Key Benefits, Conclusion or Final Note sections merely to reach the target length.',
   'Use campaign keywords sparingly and naturally. Never repeat an awkward exact-match phrase for SEO.',
@@ -85,6 +128,7 @@ const SILENT_REVIEW_CHECKLIST = [
   'Food safety: check conservative internal temperatures, refrigeration, cooling, reheating and allergen wording where relevant.',
   'Language quality: remove awkward phrases, mistranslations, contradictions, repeated conclusions and robotic transitions.',
   'Trust: remove personal anecdotes, testing claims, ratings, prices, nutrition figures, credentials or reader feedback that were not supplied as verified facts.',
+  'Structured recipe: re-read the finished article and confirm the recipe object matches it line for line — same ingredients in the same quantities, same serving count, same equipment, and prepMinutes plus cookMinutes equal to the stated total. Correct the object, not the article.',
   'Clean output: ensure content contains no image prompt, keywords list, collection alignment, campaign instruction, internal note, duplicated title, repeated variations section or editorial checklist.',
 ].join('\n- ')
 

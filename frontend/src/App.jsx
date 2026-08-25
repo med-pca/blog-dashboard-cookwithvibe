@@ -187,7 +187,7 @@ function PublicLayout() {
       <div className="ai-button-ring fixed bottom-6 right-6 z-50 rounded-full p-0.5">
         <button
           onClick={() => openChat()}
-          className="flex items-center gap-2.5 bg-[#357228] hover:bg-[#2d6124] text-white font-semibold text-sm px-5 py-3 rounded-full shadow-lg shadow-black/15 transition-all hover:scale-105"
+          className="flex items-center gap-2.5 bg-[#8e2c4d] hover:bg-[#7a2542] text-white font-semibold text-sm px-5 py-3 rounded-full shadow-lg shadow-black/15 transition-all hover:scale-105"
         >
           <Bot size={18} />
           Need Cooking Help?

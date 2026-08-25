@@ -15,7 +15,7 @@ ENV VITE_SENTRY_DSN=$VITE_SENTRY_DSN
 RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:alpine
-ENV PRERENDER_ORIGIN=https://pulserecipe.com
+ENV PRERENDER_ORIGIN=https://cookwithvibe.com
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 COPY security-headers.conf /etc/nginx/snippets/security-headers.conf

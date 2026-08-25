@@ -43,7 +43,7 @@ function JobRow({ job, onRetry, retrying }) {
             <Link
               to={`/rnl-panel/blog/${job.blogPostId}/duzenle`}
               title="Open the generated draft"
-              className="p-1.5 rounded-lg text-gray-400 hover:text-[#448834] hover:bg-green-50 transition-colors"
+              className="p-1.5 rounded-lg text-gray-400 hover:text-[#b33b62] hover:bg-green-50 transition-colors"
             >
               <FileText size={14} />
             </Link>
@@ -54,7 +54,7 @@ function JobRow({ job, onRetry, retrying }) {
               disabled={retrying === job.id}
               title="Retry this generation"
               aria-label={`Retry job ${job.id}`}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-[#448834] hover:bg-green-50 transition-colors disabled:opacity-40"
+              className="p-1.5 rounded-lg text-gray-400 hover:text-[#b33b62] hover:bg-green-50 transition-colors disabled:opacity-40"
             >
               <RefreshCw size={14} />
             </button>
@@ -165,7 +165,7 @@ export default function AiLoglar() {
             value={campaignId}
             onChange={(e) => { setCampaignId(e.target.value); setPage(1) }}
             aria-label="Campaign filter"
-            className="border border-gray-200 rounded-xl px-3 py-1.5 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#448834]/30"
+            className="border border-gray-200 rounded-xl px-3 py-1.5 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30"
           >
             <option value="">All campaigns</option>
             {campaigns.map((c) => (

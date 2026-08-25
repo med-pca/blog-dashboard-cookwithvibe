@@ -49,6 +49,29 @@ export class BlogPost {
   @Column({ type: 'text', nullable: true })
   aiImagePrompt: string | null
 
+  // Structured recipe facts. Produced by the AI pipeline in the same call as
+  // the article body, so a draft arrives complete, and correctable by an admin
+  // before publication. All of them stay empty on non-recipe posts (technique
+  // and planning guides): the detail page then renders without the recipe
+  // panels rather than showing an empty card.
+  @Column({ type: 'int', nullable: true })
+  prepMinutes: number | null
+
+  @Column({ type: 'int', nullable: true })
+  cookMinutes: number | null
+
+  @Column({ type: 'int', nullable: true })
+  servings: number | null
+
+  // Free text rather than an enum: "one roasting tray", "blender + sieve".
+  @Column({ type: 'varchar', length: 120, nullable: true })
+  equipment: string | null
+
+  // One line per ingredient, exactly as it is read on the page
+  // ("800 g small waxy potatoes, halved if larger than a walnut").
+  @Column('text', { array: true, default: '{}' })
+  ingredients: string[]
+
   // Yazının bağlı olduğu koleksiyon (Project). Boş olabilir: koleksiyona
   // atanmamış yazılar blog listesinde görünmeye devam eder. Koleksiyon
   // silinirse FK ON DELETE SET NULL ile yazı korunur, yalnızca bağı kopar.

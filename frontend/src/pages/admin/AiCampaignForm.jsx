@@ -53,7 +53,7 @@ function toPayload(form) {
 }
 
 const inputClass =
-  'w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]'
+  'w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]'
 
 export default function AiCampaignForm() {
   const { id } = useParams()
@@ -144,7 +144,7 @@ export default function AiCampaignForm() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
-        <div className="w-5 h-5 border-2 border-[#448834] border-t-transparent rounded-full animate-spin" />
+        <div className="w-5 h-5 border-2 border-[#b33b62] border-t-transparent rounded-full animate-spin" />
       </div>
     )
   }
@@ -330,7 +330,7 @@ export default function AiCampaignForm() {
             aria-checked={form.enabled}
             aria-label="Campaign active"
             onClick={() => set('enabled', !form.enabled)}
-            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${form.enabled ? 'bg-[#448834]' : 'bg-gray-200'}`}
+            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${form.enabled ? 'bg-[#b33b62]' : 'bg-gray-200'}`}
           >
             <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${form.enabled ? 'translate-x-6' : 'translate-x-1'}`} />
           </button>
@@ -350,7 +350,7 @@ export default function AiCampaignForm() {
           <button
             type="submit"
             disabled={saving}
-            className="flex-1 bg-[#448834] hover:bg-[#357228] disabled:opacity-50 text-white font-bold py-3 rounded-xl transition-colors text-sm"
+            className="flex-1 bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-50 text-white font-bold py-3 rounded-xl transition-colors text-sm"
           >
             {saving ? 'Saving...' : isEdit ? 'Save Changes' : 'Create Campaign'}
           </button>

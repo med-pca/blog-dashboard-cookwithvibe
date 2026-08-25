@@ -29,6 +29,9 @@ export default function BlogForm() {
   const isEdit = Boolean(id)
   const coverInputRef = useRef(null)
 
+  // Recipe fields are held as strings here — an empty number input gives '' and
+  // has to stay distinguishable from 0, and the ingredient list is edited as
+  // one line per ingredient. Both are converted in buildPayload() on submit.
   const [form, setForm] = useState({
     title: '',
     slug: '',
@@ -37,6 +40,11 @@ export default function BlogForm() {
     content: '',
     collectionId: '',
     published: false,
+    prepMinutes: '',
+    cookMinutes: '',
+    servings: '',
+    equipment: '',
+    ingredients: '',
   })
   const [collections, setCollections] = useState([])
   const [coverPreview, setCoverPreview] = useState(null)
@@ -67,6 +75,11 @@ export default function BlogForm() {
         content: post.content || '',
         collectionId: post.collectionId || '',
         published: post.published || false,
+        prepMinutes: post.prepMinutes ?? '',
+        cookMinutes: post.cookMinutes ?? '',
+        servings: post.servings ?? '',
+        equipment: post.equipment || '',
+        ingredients: (post.ingredients || []).join('\n'),
       })
       if (post.coverImage) setCoverPreview(`${API}${post.coverImage}`)
       setSlugManual(true)
@@ -94,6 +107,24 @@ export default function BlogForm() {
     if (coverInputRef.current) coverInputRef.current.value = ''
   }
 
+  // Form strings -> API shape. A cleared number field sends null so the column
+  // is actually cleared, rather than 0 (which the DTO would reject for servings
+  // and which would read as "no cooking time" for the other two).
+  const buildPayload = () => {
+    const num = (value) => (String(value).trim() === '' ? null : Number(value))
+    return {
+      ...form,
+      prepMinutes: num(form.prepMinutes),
+      cookMinutes: num(form.cookMinutes),
+      servings: num(form.servings),
+      equipment: form.equipment.trim() || null,
+      ingredients: form.ingredients
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean),
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
@@ -101,6 +132,7 @@ export default function BlogForm() {
     if (!form.slug.trim()) { setError('Slug is required.'); return }
     if (!form.content.trim()) { setError('Content is required.'); return }
 
+    const payload = buildPayload()
     setSaving(true)
     try {
       let post
@@ -111,9 +143,9 @@ export default function BlogForm() {
           await uploadBlogCover(id, coverFile)
           setCoverFile(null)
         }
-        post = await updateBlogPost(id, form)
+        post = await updateBlogPost(id, payload)
       } else {
-        post = await createBlogPost(form)
+        post = await createBlogPost(payload)
         if (coverFile) await uploadBlogCover(post.id, coverFile)
       }
       navigate('/rnl-panel/blog')
@@ -127,7 +159,7 @@ export default function BlogForm() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
-        <div className="w-5 h-5 border-2 border-[#448834] border-t-transparent rounded-full animate-spin" />
+        <div className="w-5 h-5 border-2 border-[#b33b62] border-t-transparent rounded-full animate-spin" />
       </div>
     )
   }
@@ -155,7 +187,7 @@ export default function BlogForm() {
             value={form.title}
             onChange={(e) => handleTitleChange(e.target.value)}
             placeholder="Post title"
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
           />
         </div>
 
@@ -167,7 +199,7 @@ export default function BlogForm() {
             value={form.slug}
             onChange={(e) => { setSlugManual(true); set('slug', e.target.value) }}
             placeholder="url-adresi"
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
           />
           <p className="text-xs text-gray-400 mt-1">{SITE_DOMAIN}/recipes/{form.slug || '...'}</p>
         </div>
@@ -180,7 +212,7 @@ export default function BlogForm() {
             onChange={(e) => set('excerpt', e.target.value)}
             placeholder="Short description shown in the blog list (optional)"
             rows={2}
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
           />
         </div>
 
@@ -193,7 +225,7 @@ export default function BlogForm() {
             placeholder="If left empty the short summary is used. Max 160 characters recommended."
             rows={2}
             maxLength={160}
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
           />
           <p className="text-xs text-gray-400 mt-1">{form.metaDescription.length}/160</p>
         </div>
@@ -204,7 +236,7 @@ export default function BlogForm() {
           <select
             value={form.collectionId}
             onChange={(e) => set('collectionId', e.target.value)}
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
           >
             <option value="">No collection</option>
             {collections.map((c) => (
@@ -218,6 +250,81 @@ export default function BlogForm() {
             The post is listed on this collection&apos;s page. Leave empty to keep it in the blog only.
           </p>
         </div>
+
+        {/* Recipe details — prefilled by the AI pipeline at generation time.
+            Left empty for technique and planning articles, which then render
+            without the "At a glance" and "Ingredients" panels on the site. */}
+        <fieldset className="border border-gray-200 rounded-xl p-5 space-y-4">
+          <legend className="px-2 text-sm font-medium text-gray-700">
+            Recipe details <span className="text-gray-400 font-normal">(shown on the recipe page)</span>
+          </legend>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Prep (min)</label>
+              <input
+                type="number"
+                min="0"
+                max="2880"
+                value={form.prepMinutes}
+                onChange={(e) => set('prepMinutes', e.target.value)}
+                placeholder="10"
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Cook (min)</label>
+              <input
+                type="number"
+                min="0"
+                max="2880"
+                value={form.cookMinutes}
+                onChange={(e) => set('cookMinutes', e.target.value)}
+                placeholder="40"
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">Serves</label>
+              <input
+                type="number"
+                min="1"
+                max="100"
+                value={form.servings}
+                onChange={(e) => set('servings', e.target.value)}
+                placeholder="4"
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">Equipment</label>
+            <input
+              type="text"
+              maxLength={120}
+              value={form.equipment}
+              onChange={(e) => set('equipment', e.target.value)}
+              placeholder="One roasting tray"
+              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1.5">Ingredients</label>
+            <textarea
+              value={form.ingredients}
+              onChange={(e) => set('ingredients', e.target.value)}
+              placeholder={'6 bone-in, skin-on chicken thighs\n800 g small waxy potatoes\n3 tbsp olive oil'}
+              rows={8}
+              className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm resize-y focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
+            />
+            <p className="text-xs text-gray-400 mt-1">
+              One ingredient per line, with its quantity. Check these against the article
+              body before publishing — {form.ingredients.split('\n').filter((l) => l.trim()).length}/60 lines.
+            </p>
+          </div>
+        </fieldset>
 
         {/* Cover Image */}
         <div>
@@ -237,7 +344,7 @@ export default function BlogForm() {
             <button
               type="button"
               onClick={() => coverInputRef.current?.click()}
-              className="w-full h-36 border-2 border-dashed border-gray-200 rounded-xl flex flex-col items-center justify-center gap-2 text-gray-400 hover:border-[#448834] hover:text-[#448834] transition-colors"
+              className="w-full h-36 border-2 border-dashed border-gray-200 rounded-xl flex flex-col items-center justify-center gap-2 text-gray-400 hover:border-[#b33b62] hover:text-[#b33b62] transition-colors"
             >
               <Upload size={22} />
               <span className="text-sm">Upload cover image</span>
@@ -264,7 +371,7 @@ export default function BlogForm() {
             type="button"
             onClick={() => set('published', !form.published)}
             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-              form.published ? 'bg-[#448834]' : 'bg-gray-200'
+              form.published ? 'bg-[#b33b62]' : 'bg-gray-200'
             }`}
           >
             <span
@@ -291,7 +398,7 @@ export default function BlogForm() {
           <button
             type="submit"
             disabled={saving}
-            className="flex-1 bg-[#448834] hover:bg-[#357228] disabled:opacity-50 text-white font-bold py-3 rounded-xl transition-colors text-sm"
+            className="flex-1 bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-50 text-white font-bold py-3 rounded-xl transition-colors text-sm"
           >
             {saving ? 'Saving...' : isEdit ? 'Save Changes' : 'Create Post'}
           </button>

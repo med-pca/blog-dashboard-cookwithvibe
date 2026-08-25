@@ -1,41 +1,41 @@
-# Pulse Recipe
+# CookWithVibe
 
-Pulse Recipe is an English-language food blog sharing approachable recipes, meal-prep systems, and practical kitchen guides for busy home cooks. Content covers quick breakfasts, weeknight dinners, comfort classics, healthy bowls, budget cooking, and menu planning.
+CookWithVibe is an English-language food blog sharing approachable recipes, meal-prep systems, and practical kitchen guides for busy home cooks. Content covers quick breakfasts, weeknight dinners, comfort classics, healthy bowls, budget cooking, and menu planning.
 
 ## Pages
 
-- [Home](https://pulserecipe.com/)
-- [Recipes](https://pulserecipe.com/hizmetler)
-- [Collections](https://pulserecipe.com/projelerimiz)
-- [Blog](https://pulserecipe.com/blog)
-- [About](https://pulserecipe.com/kurumsal)
-- [Contact](https://pulserecipe.com/iletisim)
-- [FAQ](https://pulserecipe.com/sss)
-- [Privacy Policy](https://pulserecipe.com/kvkk)
-- [Cookie Policy](https://pulserecipe.com/cookies)
-- [Terms of Service](https://pulserecipe.com/terms)
-- [Disclaimer](https://pulserecipe.com/disclaimer)
+- [Home](https://cookwithvibe.com/)
+- [Recipes](https://cookwithvibe.com/hizmetler)
+- [Collections](https://cookwithvibe.com/projelerimiz)
+- [Blog](https://cookwithvibe.com/blog)
+- [About](https://cookwithvibe.com/kurumsal)
+- [Contact](https://cookwithvibe.com/iletisim)
+- [FAQ](https://cookwithvibe.com/sss)
+- [Privacy Policy](https://cookwithvibe.com/kvkk)
+- [Cookie Policy](https://cookwithvibe.com/cookies)
+- [Terms of Service](https://cookwithvibe.com/terms)
+- [Disclaimer](https://cookwithvibe.com/disclaimer)
 
 ## Recipe Guides
 
-- [Weeknight Dinners](https://pulserecipe.com/hizmetler/weeknight-dinners)
-- [Fast 30-Minute Meals](https://pulserecipe.com/hizmetler/30-minute-meals)
-- [Core Cooking Techniques](https://pulserecipe.com/hizmetler/cooking-techniques)
-- [Fixing Common Cooking Mistakes](https://pulserecipe.com/hizmetler/cooking-mistakes)
-- [Weekly Menu Planning](https://pulserecipe.com/hizmetler/menu-planning)
-- [Meal Prep & Batch Cooking](https://pulserecipe.com/hizmetler/meal-prep)
-- [Budget Cooking](https://pulserecipe.com/hizmetler/budget-cooking)
-- [Kitchen Setup & Gear](https://pulserecipe.com/hizmetler/kitchen-setup)
+- [Weeknight Dinners](https://cookwithvibe.com/hizmetler/weeknight-dinners)
+- [Fast 30-Minute Meals](https://cookwithvibe.com/hizmetler/30-minute-meals)
+- [Core Cooking Techniques](https://cookwithvibe.com/hizmetler/cooking-techniques)
+- [Fixing Common Cooking Mistakes](https://cookwithvibe.com/hizmetler/cooking-mistakes)
+- [Weekly Menu Planning](https://cookwithvibe.com/hizmetler/menu-planning)
+- [Meal Prep & Batch Cooking](https://cookwithvibe.com/hizmetler/meal-prep)
+- [Budget Cooking](https://cookwithvibe.com/hizmetler/budget-cooking)
+- [Kitchen Setup & Gear](https://cookwithvibe.com/hizmetler/kitchen-setup)
 
-## Why Pulse Recipe
+## Why CookWithVibe
 
-- [Chef-Tested Methods](https://pulserecipe.com/neden-biz/tested-recipes)
-- [Complete Meal Guides](https://pulserecipe.com/neden-biz/practical-system)
-- [Sustainable Cooking](https://pulserecipe.com/neden-biz/seasonal-ingredients)
-- [Efficiency-Focused Cooking](https://pulserecipe.com/neden-biz/budget-planning)
-- [Community and Trust](https://pulserecipe.com/neden-biz/friendly-community)
-- [Kitchen Gear Recommendations](https://pulserecipe.com/neden-biz/reliable-methodology)
+- [Chef-Tested Methods](https://cookwithvibe.com/neden-biz/tested-recipes)
+- [Complete Meal Guides](https://cookwithvibe.com/neden-biz/practical-system)
+- [Sustainable Cooking](https://cookwithvibe.com/neden-biz/seasonal-ingredients)
+- [Efficiency-Focused Cooking](https://cookwithvibe.com/neden-biz/budget-planning)
+- [Community and Trust](https://cookwithvibe.com/neden-biz/friendly-community)
+- [Kitchen Gear Recommendations](https://cookwithvibe.com/neden-biz/reliable-methodology)
 
 ## Resources
 
-- [Sitemap](https://pulserecipe.com/sitemap.xml)
+- [Sitemap](https://cookwithvibe.com/sitemap.xml)

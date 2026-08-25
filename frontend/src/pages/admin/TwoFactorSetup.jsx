@@ -90,7 +90,7 @@ export default function TwoFactorSetup() {
       <div className="bg-white border border-gray-100 rounded-xl p-5 mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
           {status.enabled
-            ? <ShieldCheck size={20} className="text-[#448834]" />
+            ? <ShieldCheck size={20} className="text-[#b33b62]" />
             : <ShieldOff size={20} className="text-gray-400" />
           }
           <div>
@@ -114,7 +114,7 @@ export default function TwoFactorSetup() {
           <button
             onClick={startSetup}
             disabled={loading}
-            className="text-sm text-[#448834] hover:text-[#357228] font-medium disabled:opacity-40"
+            className="text-sm text-[#b33b62] hover:text-[#8e2c4d] font-medium disabled:opacity-40"
           >
             {loading ? 'Loading...' : 'Enable'}
           </button>
@@ -197,7 +197,7 @@ export default function TwoFactorSetup() {
                 value={code}
                 onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
                 placeholder="000000"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-center text-xl font-mono tracking-[0.5em] focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-center text-xl font-mono tracking-[0.5em] focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
                 required
                 autoFocus
               />
@@ -216,7 +216,7 @@ export default function TwoFactorSetup() {
               <button
                 type="submit"
                 disabled={loading || code.length !== 6}
-                className="flex-1 bg-[#448834] hover:bg-[#357228] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2.5 rounded-lg transition-colors text-sm"
+                className="flex-1 bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2.5 rounded-lg transition-colors text-sm"
               >
                 {loading ? 'Verifying...' : 'Onayla'}
               </button>

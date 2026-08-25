@@ -4,7 +4,7 @@ import { LEGAL_CONTACT, LEGAL_UPDATED } from "../../lib/legal";
 const SECTIONS = [
   {
     title: "1. Our purpose",
-    body: "Pulse Recipe publishes practical recipe ideas and kitchen guides for home cooks. We prioritize clear instructions, accessible ingredients, internal consistency, and information that helps a reader complete the task.",
+    body: "CookWithVibe publishes practical recipe ideas and kitchen guides for home cooks. We prioritize clear instructions, accessible ingredients, internal consistency, and information that helps a reader complete the task.",
   },
   {
     title: "2. How content is created",
@@ -36,7 +36,7 @@ export default function EditorialPolicy() {
   return (
     <LegalPage
       title="Editorial Policy"
-      description="How Pulse Recipe drafts, reviews, corrects, and publishes recipes and cooking guides."
+      description="How CookWithVibe drafts, reviews, corrects, and publishes recipes and cooking guides."
       updated={LEGAL_UPDATED}
       intro="This policy explains how we use editorial review and automation responsibly."
       sections={SECTIONS}

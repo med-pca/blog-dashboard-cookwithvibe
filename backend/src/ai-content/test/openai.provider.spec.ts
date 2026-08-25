@@ -56,7 +56,15 @@ describe('OpenAiContentProvider', () => {
     await makeProvider().writeArticle(ARTICLE_REQUEST)
     const schema = createMock.mock.calls[0][0].text.format.schema
     expect(Object.keys(schema.properties)).not.toContain('published')
-    expect(schema.required).toEqual(['title', 'slug', 'excerpt', 'metaDescription', 'content', 'imagePrompt', 'suggestedKeywords'])
+    expect(schema.required).toEqual([
+      'title', 'slug', 'excerpt', 'metaDescription', 'content', 'imagePrompt', 'suggestedKeywords', 'recipe',
+    ])
+    // The nested recipe object is held to the same contract, so it cannot
+    // become a second way in for a field the model was never meant to set.
+    expect(schema.properties.recipe.additionalProperties).toBe(false)
+    expect(schema.properties.recipe.required).toEqual([
+      'isRecipe', 'prepMinutes', 'cookMinutes', 'servings', 'equipment', 'ingredients',
+    ])
   })
 
   it('carries the editorial guardrails and the avoid-list into the prompt', async () => {

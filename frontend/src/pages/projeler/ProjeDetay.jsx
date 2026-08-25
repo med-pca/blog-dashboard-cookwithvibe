@@ -102,7 +102,7 @@ export default function ProjeDetay() {
           </p>
           <Link
             to="/collections"
-            className="text-[#448834] font-semibold hover:underline"
+            className="text-[#b33b62] font-semibold hover:underline"
           >
             Back to all collections
           </Link>
@@ -152,12 +152,12 @@ export default function ProjeDetay() {
     url: `${SITE_URL}/collections/${slug}`,
     author: {
       "@type": "Organization",
-      name: "Pulse Recipe",
+      name: "CookWithVibe",
       url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
-      name: "Pulse Recipe",
+      name: "CookWithVibe",
       url: SITE_URL,
     },
   };
@@ -196,8 +196,8 @@ export default function ProjeDetay() {
                       <div className="bg-white/90 rounded-full p-4 shadow-lg">
                         <Play
                           size={28}
-                          className="text-[#448834] ml-1"
-                          fill="#448834"
+                          className="text-[#b33b62] ml-1"
+                          fill="#b33b62"
                         />
                       </div>
                     </div>
@@ -250,7 +250,7 @@ export default function ProjeDetay() {
                     <button
                       key={m.id || i}
                       onClick={() => setCurrent(i)}
-                      className={`flex-1 aspect-square rounded-lg overflow-hidden border-2 transition-all relative ${i === current ? "border-[#448834]" : "border-transparent opacity-60 hover:opacity-100"}`}
+                      className={`flex-1 aspect-square rounded-lg overflow-hidden border-2 transition-all relative ${i === current ? "border-[#b33b62]" : "border-transparent opacity-60 hover:opacity-100"}`}
                     >
                       {m.type === "video" ? (
                         <>
@@ -311,7 +311,7 @@ export default function ProjeDetay() {
                     <li key={i} className="flex items-start gap-3">
                       <CheckCircle2
                         size={18}
-                        className="text-[#448834] shrink-0 mt-0.5"
+                        className="text-[#b33b62] shrink-0 mt-0.5"
                       />
                       <span className="text-gray-700 font-medium">{s}</span>
                     </li>
@@ -330,7 +330,7 @@ export default function ProjeDetay() {
                     <li key={i} className="flex items-start gap-3">
                       <Sparkles
                         size={16}
-                        className="text-[#f5ce31] shrink-0 mt-0.5"
+                        className="text-[#c2683f] shrink-0 mt-0.5"
                       />
                       <span className="text-gray-600 text-sm">{h}</span>
                     </li>
@@ -348,7 +348,7 @@ export default function ProjeDetay() {
                     key={i}
                     className="bg-white rounded-xl border border-gray-100 p-4 text-center"
                   >
-                    <p className="text-[#448834] font-bold text-2xl font-['Rajdhani']">
+                    <p className="text-[#b33b62] font-bold text-2xl font-['Rajdhani']">
                       {box.value}
                     </p>
                     <p className="text-xs text-gray-400 font-medium mt-1">
@@ -366,13 +366,13 @@ export default function ProjeDetay() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#448834] hover:bg-[#357228] text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-[#448834]/25"
+              className="inline-flex items-center gap-2 bg-[#b33b62] hover:bg-[#8e2c4d] text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-[#b33b62]/25"
             >
               {project.ctaText || "Get Similar Suggestions"}
               <ArrowRight size={17} />
             </a>
             ) : (
-              <Link to="/contact" className="inline-flex items-center gap-2 bg-[#448834] hover:bg-[#357228] text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-[#448834]/25">
+              <Link to="/contact" className="inline-flex items-center gap-2 bg-[#b33b62] hover:bg-[#8e2c4d] text-white font-bold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-[#b33b62]/25">
               {project.ctaText || "Get Similar Suggestions"}
               <ArrowRight size={17} />
             </Link>
@@ -388,7 +388,7 @@ export default function ProjeDetay() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
               <div>
-                <p className="text-[#448834] font-semibold text-xs uppercase tracking-widest mb-2">
+                <p className="text-[#b33b62] font-semibold text-xs uppercase tracking-widest mb-2">
                   In This Collection
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -403,7 +403,7 @@ export default function ProjeDetay() {
               </div>
               <Link
                 to="/recipes"
-                className="text-[#448834] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all"
+                className="text-[#b33b62] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all"
               >
                 All recipes <ArrowRight size={14} />
               </Link>
@@ -431,7 +431,7 @@ export default function ProjeDetay() {
                   <Link
                     key={post.id}
                     to={`/recipes/${post.slug}`}
-                    className="bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-[#448834]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group"
+                    className="bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-[#b33b62]/20 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden group"
                   >
                     <div className="h-48 overflow-hidden bg-gray-100">
                       <img
@@ -457,7 +457,7 @@ export default function ProjeDetay() {
                           {post.excerpt}
                         </p>
                       )}
-                      <span className="text-[#448834] text-sm font-semibold flex items-center gap-1 mt-auto group-hover:gap-2 transition-all">
+                      <span className="text-[#b33b62] text-sm font-semibold flex items-center gap-1 mt-auto group-hover:gap-2 transition-all">
                         Read Recipe <ArrowRight size={14} />
                       </span>
                     </div>

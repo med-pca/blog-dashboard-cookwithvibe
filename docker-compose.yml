@@ -128,7 +128,7 @@ services:
     expose:
       - "8080"
     environment:
-      PRERENDER_ORIGIN: ${PRERENDER_ORIGIN:-https://pulserecipe.com}
+      PRERENDER_ORIGIN: ${PRERENDER_ORIGIN:-https://cookwithvibe.com}
     depends_on:
       - backend
       - prerender

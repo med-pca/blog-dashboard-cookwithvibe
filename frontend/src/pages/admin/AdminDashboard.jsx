@@ -30,7 +30,7 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
-        <div className="w-5 h-5 border-2 border-[#448834] border-t-transparent rounded-full animate-spin" />
+        <div className="w-5 h-5 border-2 border-[#b33b62] border-t-transparent rounded-full animate-spin" />
       </div>
     )
   }
@@ -50,7 +50,7 @@ export default function AdminDashboard() {
         <div className="relative z-10 text-center">
           <p className="text-white/70 text-sm sm:text-lg mb-2 drop-shadow-md tracking-widest uppercase">Admin Panel</p>
           <h1 className="text-white text-4xl sm:text-6xl font-bold drop-shadow-lg">Welcome back</h1>
-          <p className="text-white/60 text-base sm:text-xl mt-3 drop-shadow-md">Pulse Recipe</p>
+          <p className="text-white/60 text-base sm:text-xl mt-3 drop-shadow-md">CookWithVibe</p>
         </div>
       </div>
 
@@ -59,14 +59,14 @@ export default function AdminDashboard() {
       {/* Stats card */}
       <div>
         <p className="text-sm font-semibold text-gray-500 mb-3 flex items-center gap-2">
-          <FolderOpen size={14} className="text-[#448834]" />
+          <FolderOpen size={14} className="text-[#b33b62]" />
           Overview
         </p>
       <div className="relative bg-white rounded-2xl border border-gray-100 shadow-md overflow-hidden flex flex-col sm:flex-row">
         <img src="/food/stats-bg.svg" alt="" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[25%] w-full h-auto opacity-10 pointer-events-none" />
         <div className="relative flex-1 px-6 sm:px-7 py-5 sm:py-6 overflow-hidden border-b sm:border-b-0 sm:border-r border-gray-100">
           <div className="relative z-10">
-            <p className="text-5xl font-bold text-[#448834] font-['Rajdhani'] drop-shadow-sm">{projects.length}</p>
+            <p className="text-5xl font-bold text-[#b33b62] font-['Rajdhani'] drop-shadow-sm">{projects.length}</p>
             <p className="text-base text-gray-400 mt-0.5 drop-shadow-sm">Total Collections</p>
             {projects.length - publishedProjects.length > 0 && (
               <p className="text-xs text-amber-400 mt-0.5">{projects.length - publishedProjects.length} hidden</p>
@@ -76,7 +76,7 @@ export default function AdminDashboard() {
 
         <div className="relative flex-1 px-6 sm:px-7 py-5 sm:py-6 overflow-hidden border-b sm:border-b-0 sm:border-r border-gray-100">
           <div className="relative z-10">
-            <p className="text-5xl font-bold text-[#448834] font-['Rajdhani'] drop-shadow-sm">
+            <p className="text-5xl font-bold text-[#b33b62] font-['Rajdhani'] drop-shadow-sm">
               {totalKwStr}
             </p>
             <p className="text-base text-gray-400 mt-0.5 drop-shadow-sm">Featured Recipes</p>
@@ -85,7 +85,7 @@ export default function AdminDashboard() {
 
         <Link to="/rnl-panel/loglar" className="relative flex-1 px-6 sm:px-7 py-5 sm:py-6 overflow-hidden hover:bg-gray-50 transition-colors">
           <div className="relative z-10">
-            <p className={`text-5xl font-bold font-['Rajdhani'] drop-shadow-sm ${(logStats?.errors24h ?? 0) > 0 ? 'text-red-500' : 'text-[#448834]'}`}>
+            <p className={`text-5xl font-bold font-['Rajdhani'] drop-shadow-sm ${(logStats?.errors24h ?? 0) > 0 ? 'text-red-500' : 'text-[#b33b62]'}`}>
               {logStats?.errors24h ?? 0}
             </p>
             <p className="text-base text-gray-400 mt-0.5 drop-shadow-sm">Errors (24h)</p>
@@ -101,13 +101,13 @@ export default function AdminDashboard() {
       {/* Quick actions */}
       <div>
         <p className="text-sm font-semibold text-gray-500 mb-3 flex items-center gap-2">
-          <Zap size={14} className="text-[#448834]" />
+          <Zap size={14} className="text-[#b33b62]" />
           Quick Actions
         </p>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Link
           to="/rnl-panel/projeler/yeni"
-          className="group relative bg-white hover:bg-gray-50 rounded-2xl overflow-hidden flex items-center px-6 py-5 min-h-22.5 transition-all duration-200 border border-gray-100 border-l-4 border-l-[#448834] shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+          className="group relative bg-white hover:bg-gray-50 rounded-2xl overflow-hidden flex items-center px-6 py-5 min-h-22.5 transition-all duration-200 border border-gray-100 border-l-4 border-l-[#b33b62] shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
         >
           <img src="/yeni_proje.webp" alt="" className="absolute w-44 h-44 object-contain shrink-0 opacity-10" style={{ right: -30, bottom: -47 }} />
           <div className="relative z-10">
@@ -121,7 +121,7 @@ export default function AdminDashboard() {
 
         <Link
           to="/rnl-panel/analitik"
-          className="group relative bg-white hover:bg-gray-50 rounded-2xl overflow-hidden flex items-center px-6 py-5 min-h-22.5 transition-all duration-200 border border-gray-100 border-l-4 border-l-[#448834] shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+          className="group relative bg-white hover:bg-gray-50 rounded-2xl overflow-hidden flex items-center px-6 py-5 min-h-22.5 transition-all duration-200 border border-gray-100 border-l-4 border-l-[#b33b62] shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
         >
           <img src="/analitik_banner.webp" alt="" className="absolute w-36 h-36 object-contain shrink-0 opacity-10" style={{ right: -25, bottom: -35 }} />
           <div className="relative z-10">

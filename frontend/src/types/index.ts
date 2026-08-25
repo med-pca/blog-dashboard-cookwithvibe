@@ -45,6 +45,14 @@ export interface BlogPost {
   collectionId?: string | null
   // Set by the AI content pipeline; drives the "AI Draft" badge.
   aiGenerated?: boolean
+  // Structured recipe facts behind the "At a glance" and "Ingredients" panels.
+  // The AI pipeline fills them at generation time; all are empty on technique
+  // and planning articles, which render without those panels.
+  prepMinutes?: number | null
+  cookMinutes?: number | null
+  servings?: number | null
+  equipment?: string | null
+  ingredients?: string[]
   sortOrder: number
   createdAt: string
   updatedAt: string

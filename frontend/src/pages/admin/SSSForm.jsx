@@ -48,7 +48,7 @@ export default function SSSForm({ initial = {}, onSave, onCancel }) {
             value={form.question}
             onChange={(e) => set('question', e.target.value)}
             placeholder="Frequently asked question"
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
           />
         </div>
 
@@ -59,7 +59,7 @@ export default function SSSForm({ initial = {}, onSave, onCancel }) {
             onChange={(e) => set('answer', e.target.value)}
             placeholder="The answer to the question"
             rows={6}
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm resize-y focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]"
+            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm resize-y focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
           />
         </div>
 
@@ -68,7 +68,7 @@ export default function SSSForm({ initial = {}, onSave, onCancel }) {
             type="button"
             onClick={() => set('published', !form.published)}
             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-              form.published ? 'bg-[#448834]' : 'bg-gray-200'
+              form.published ? 'bg-[#b33b62]' : 'bg-gray-200'
             }`}
           >
             <span
@@ -90,7 +90,7 @@ export default function SSSForm({ initial = {}, onSave, onCancel }) {
           <button
             type="submit"
             disabled={saving}
-            className="flex-1 bg-[#448834] hover:bg-[#357228] disabled:opacity-50 text-white font-bold py-3 rounded-xl transition-colors text-sm"
+            className="flex-1 bg-[#b33b62] hover:bg-[#8e2c4d] disabled:opacity-50 text-white font-bold py-3 rounded-xl transition-colors text-sm"
           >
             {saving ? 'Saving...' : isEdit ? 'Save' : 'Create'}
           </button>

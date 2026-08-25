@@ -45,7 +45,7 @@ export default function Stats() {
                 <Icon
                   size={34}
                   strokeWidth={1.8}
-                  className="mx-auto text-[#448834]"
+                  className="mx-auto text-[#b33b62]"
                   aria-hidden="true"
                 />
                 <p className="text-gray-800 font-bold mt-3 text-sm">{label}</p>

@@ -74,15 +74,15 @@ export default function Kurumsal() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     url: `${SITE_URL}/about`,
-    name: "About | Pulse Recipe",
+    name: "About | CookWithVibe",
     description:
-      "About Pulse Recipe. A food-first platform sharing practical recipes and cooking guides for everyday life.",
+      "About CookWithVibe. A food-first platform sharing practical recipes and cooking guides for everyday life.",
     mainEntity: {
       "@type": "Organization",
-      name: "Pulse Recipe",
+      name: "CookWithVibe",
       url: SITE_URL,
       logo: `${SITE_URL}/food/logo-mark.svg`,
-      email: "contact@pulserecipe.com",
+      email: "contact@cookwithvibe.com",
     },
   };
 
@@ -90,7 +90,7 @@ export default function Kurumsal() {
     <>
       <SEO
         title="About"
-        description="About Pulse Recipe. A food-first platform sharing practical recipes and cooking guides for everyday life."
+        description="About CookWithVibe. A food-first platform sharing practical recipes and cooking guides for everyday life."
         jsonLd={jsonLd}
       />
       <PageHeader title="About" />
@@ -103,12 +103,12 @@ export default function Kurumsal() {
           loading="lazy"
         />
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-          <div className="relative border-2 border-[#448834] rounded-3xl p-3">
+          <div className="relative border-2 border-[#b33b62] rounded-3xl p-3">
             <div className="absolute -top-7 -left-7 z-20">
-              <div className="w-24 h-24 rounded-full border-2 border-[#448834] bg-white shadow-lg flex items-center justify-center">
+              <div className="w-24 h-24 rounded-full border-2 border-[#b33b62] bg-white shadow-lg flex items-center justify-center">
                 <img
                   src="/food/logo-mark.svg"
-                  alt="Pulse Recipe"
+                  alt="CookWithVibe"
                   className="w-16 h-16"
                   loading="lazy"
                 />
@@ -155,8 +155,8 @@ export default function Kurumsal() {
           </div>
 
           <div>
-            <p className="text-[#448834] font-semibold text-xs uppercase tracking-widest mb-4">
-              Pulse Recipe
+            <p className="text-[#b33b62] font-semibold text-xs uppercase tracking-widest mb-4">
+              CookWithVibe
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 leading-tight">
               Practical Recipes For
@@ -164,7 +164,7 @@ export default function Kurumsal() {
               Real Home Kitchens
             </h2>
             <p className="text-gray-500 leading-relaxed mb-5">
-              Pulse Recipe is built for everyday cooks who want practical
+              CookWithVibe is built for everyday cooks who want practical
               recipes without complexity. We focus on clear methods, balanced
               meals, and approachable ingredient choices.
             </p>
@@ -183,7 +183,7 @@ export default function Kurumsal() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10 py-8 border-y border-gray-100">
               {stats.map(({ value, label }) => (
                 <div key={label} className="text-center">
-                  <p className="text-[#448834] font-bold text-3xl font-['Rajdhani'] leading-none mb-1">
+                  <p className="text-[#b33b62] font-bold text-3xl font-['Rajdhani'] leading-none mb-1">
                     {value}
                   </p>
                   <p className="text-gray-500 text-xs leading-snug">{label}</p>
@@ -197,11 +197,11 @@ export default function Kurumsal() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="text-[#448834] font-semibold text-xs uppercase tracking-widest mb-3">
+            <p className="text-[#b33b62] font-semibold text-xs uppercase tracking-widest mb-3">
               Our Values
             </p>
             <h2 className="text-3xl font-bold text-gray-900">
-              Why Pulse Recipe?
+              Why CookWithVibe?
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -210,9 +210,9 @@ export default function Kurumsal() {
               return (
                 <div
                   key={title}
-                  className="flex gap-4 p-6 bg-white rounded-2xl border border-gray-100 hover:border-[#448834]/30 hover:shadow-md transition-all"
+                  className="flex gap-4 p-6 bg-white rounded-2xl border border-gray-100 hover:border-[#b33b62]/30 hover:shadow-md transition-all"
                 >
-                  <Icon size={20} className="text-[#448834] shrink-0 mt-0.5" />
+                  <Icon size={20} className="text-[#b33b62] shrink-0 mt-0.5" />
                   <div>
                     <h4 className="font-bold text-gray-900 text-sm mb-1.5">
                       {title}

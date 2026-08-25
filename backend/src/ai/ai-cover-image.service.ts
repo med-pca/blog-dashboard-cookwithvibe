@@ -16,7 +16,7 @@ export class AiCoverImageService {
     const prompt = [
       `Create one realistic editorial food photograph for the recipe “${title}”.`,
       `Exact dish: ${dishDescription}`,
-      'Match the Pulse Recipe visual identity: warm natural window light, realistic colors, muted cream and soft green accents, simple ceramic tableware, natural linen, uncluttered composition, landscape 3:2 framing, three-quarter overhead camera angle.',
+      'Match the CookWithVibe visual identity: warm natural window light, realistic colors, muted cream and soft green accents, simple ceramic tableware, natural linen, uncluttered composition, landscape 3:2 framing, three-quarter overhead camera angle.',
       'Show only ingredients and garnishes explicitly present in the exact dish description. Do not substitute ingredients or add decorative herbs, sauces, side dishes or drinks.',
       'No people, hands, faces, packaging, text, typography, logo or watermark. Avoid artificial gloss, impossible textures, duplicated food and malformed tableware.',
     ].join('\n')

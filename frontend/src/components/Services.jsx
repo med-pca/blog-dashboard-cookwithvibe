@@ -49,7 +49,7 @@ const categories = [
         ],
         photo: "/guides/fast-weeknight-cooking.webp",
         photoAlt: "Fast one-pan weeknight dinner preparation with a timer",
-        ring: "ring-2 ring-[#448834]/30",
+        ring: "ring-2 ring-[#b33b62]/30",
       },
       {
         icon: Sparkles,
@@ -64,7 +64,7 @@ const categories = [
         ],
         photo: "/guides/cooking-coaching.webp",
         photoAlt: "Home cook practicing seasoning and technique with a notebook",
-        ring: "ring-2 ring-[#448834]/30",
+        ring: "ring-2 ring-[#b33b62]/30",
       },
       {
         icon: Wrench,
@@ -79,7 +79,7 @@ const categories = [
         ],
         photo: "/guides/recipe-troubleshooting.webp",
         photoAlt: "Cook reviewing recipe notes while adjusting a sauce",
-        ring: "ring-2 ring-[#448834]/30",
+        ring: "ring-2 ring-[#b33b62]/30",
       },
     ],
   },
@@ -118,7 +118,7 @@ const categories = [
         ],
         photo: "/guides/meal-prep-planning.webp",
         photoAlt: "Weekly meal prep plan with organized balanced meals",
-        ring: "ring-2 ring-[#448834]/30",
+        ring: "ring-2 ring-[#b33b62]/30",
       },
       {
         icon: PiggyBank,
@@ -133,7 +133,7 @@ const categories = [
         ],
         photo: "/guides/budget-cooking.webp",
         photoAlt: "Affordable pantry staples and a balanced homemade meal",
-        ring: "ring-2 ring-[#448834]/30",
+        ring: "ring-2 ring-[#b33b62]/30",
       },
     ],
   },
@@ -206,7 +206,7 @@ export default function Services() {
               onClick={() => setActiveTab(cat.id)}
               className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 ${
                 activeTab === cat.id
-                  ? "bg-[#448834] text-white shadow-md"
+                  ? "bg-[#b33b62] text-white shadow-md"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
@@ -238,7 +238,7 @@ export default function Services() {
                 return (
                   <div
                     key={s.title}
-                    className={`relative rounded-2xl border border-gray-100 overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group ${s.highlight ? "ring-2 ring-[#448834]/30" : s.ring || ""}`}
+                    className={`relative rounded-2xl border border-gray-100 overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group ${s.highlight ? "ring-2 ring-[#b33b62]/30" : s.ring || ""}`}
                   >
                     {/* Photo */}
                     <Link
@@ -256,8 +256,8 @@ export default function Services() {
                     <div className="p-5 flex flex-col gap-3 flex-1 bg-white">
                       <Link to={`/guides/${s.slug}`} className="contents">
                         <div className="flex items-center gap-3">
-                          <Icon className="text-[#448834]" size={22} />
-                          <div className="h-0.5 flex-1 rounded-full bg-[#448834]/30" />
+                          <Icon className="text-[#b33b62]" size={22} />
+                          <div className="h-0.5 flex-1 rounded-full bg-[#b33b62]/30" />
                         </div>
 
                         <h3 className="font-bold text-gray-900 text-base leading-tight">
@@ -273,7 +273,7 @@ export default function Services() {
                               key={f}
                               className="flex items-center gap-2 text-sm text-gray-600"
                             >
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#448834] shrink-0" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#b33b62] shrink-0" />
                               {f}
                             </li>
                           ))}
@@ -284,7 +284,7 @@ export default function Services() {
                         <Link
                           to={`/guides/${s.slug}`}
                           aria-label={`View details for ${s.title}`}
-                          className="text-sm font-semibold text-gray-500 hover:text-[#448834] transition-colors"
+                          className="text-sm font-semibold text-gray-500 hover:text-[#b33b62] transition-colors"
                         >
                           View Details
                         </Link>

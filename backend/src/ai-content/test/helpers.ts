@@ -154,6 +154,14 @@ export function makeArticle(overrides: Record<string, unknown> = {}) {
     content: `<h2>Why this works</h2><p>${'Sheet pan dinners keep the cleanup small and the flavour big. '.repeat(30)}</p>`,
     imagePrompt: 'Honey garlic chicken pieces with roasted potatoes on a cream ceramic platter.',
     suggestedKeywords: ['sheet pan', 'chicken'],
+    recipe: {
+      isRecipe: true,
+      prepMinutes: 15,
+      cookMinutes: 35,
+      servings: 4,
+      equipment: 'One sheet pan',
+      ingredients: ['6 bone-in chicken thighs', '2 tbsp honey', '4 garlic cloves, minced'],
+    },
     ...overrides,
   }
 }

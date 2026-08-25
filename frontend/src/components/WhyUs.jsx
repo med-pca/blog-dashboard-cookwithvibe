@@ -67,7 +67,7 @@ export default function WhyUs() {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-10 lg:hidden">
-          <span className="block text-[#357228] font-semibold text-sm mb-3">
+          <span className="block text-[#8e2c4d] font-semibold text-sm mb-3">
             WHY PULSE RECIPE?
           </span>
           <h2 className="text-2xl font-bold text-gray-900 leading-tight mb-3">
@@ -82,7 +82,7 @@ export default function WhyUs() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Header — inside the grid on desktop only */}
           <div className="hidden lg:flex flex-col justify-center py-4 pr-4 text-center">
-            <span className="block text-[#357228] font-semibold text-sm mb-3">
+            <span className="block text-[#8e2c4d] font-semibold text-sm mb-3">
               WHY PULSE RECIPE?
             </span>
             <h2 className="text-2xl font-bold text-gray-900 leading-tight mb-3">
@@ -100,9 +100,9 @@ export default function WhyUs() {
             return (
               <div
                 key={title}
-                className="bg-white rounded-2xl border border-gray-100 border-b-4 border-b-transparent hover:border-b-[#357228] p-7 flex flex-col gap-3 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300"
+                className="bg-white rounded-2xl border border-gray-100 border-b-4 border-b-transparent hover:border-b-[#8e2c4d] p-7 flex flex-col gap-3 shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300"
               >
-                <Icon size={28} className="text-[#357228]" />
+                <Icon size={28} className="text-[#8e2c4d]" />
                 <h3 className="font-bold text-gray-900 text-lg">{title}</h3>
                 <p className="text-gray-500 text-base leading-relaxed flex-1">
                   {desc}
@@ -110,7 +110,7 @@ export default function WhyUs() {
                 <Link
                   to={`/why-us/${slug}`}
                   aria-label={`More details about ${title}`}
-                  className="text-[#357228] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all w-fit"
+                  className="text-[#8e2c4d] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all w-fit"
                 >
                   Learn More <span>›</span>
                 </Link>
@@ -131,14 +131,14 @@ export default function WhyUs() {
                 href={waLink(WA_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-[#357228] text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-[#2d6124] transition-colors"
+                className="inline-flex items-center justify-center bg-[#8e2c4d] text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-[#7a2542] transition-colors"
               >
                 Get Suggestions
               </a>
             ) : (
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center bg-[#357228] text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-[#2d6124] transition-colors"
+                className="inline-flex items-center justify-center bg-[#8e2c4d] text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-[#7a2542] transition-colors"
               >
                 Get Suggestions
               </Link>

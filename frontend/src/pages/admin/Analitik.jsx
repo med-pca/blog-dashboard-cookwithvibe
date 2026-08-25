@@ -55,7 +55,7 @@ function MetricList({ title, icon: Icon, items, emptyText }) {
               <span className="text-xs text-gray-500 truncate flex-1 min-w-0">{item.x || 'Direct'}</span>
               <div className="w-20 h-1 bg-gray-100 rounded-full overflow-hidden shrink-0">
                 <div
-                  className="h-full bg-[#448834] rounded-full"
+                  className="h-full bg-[#b33b62] rounded-full"
                   style={{ width: `${(item.y / max) * 100}%` }}
                 />
               </div>
@@ -199,8 +199,8 @@ export default function Analitik() {
                 <AreaChart data={chartData}>
                   <defs>
                     <linearGradient id="pvGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#448834" stopOpacity={0.12} />
-                      <stop offset="95%" stopColor="#448834" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#b33b62" stopOpacity={0.12} />
+                      <stop offset="95%" stopColor="#b33b62" stopOpacity={0} />
                     </linearGradient>
                     <linearGradient id="sesGrad" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor="#94a3b8" stopOpacity={0.12} />
@@ -210,7 +210,7 @@ export default function Analitik() {
                   <XAxis dataKey="t" tick={{ fontSize: 11, fill: '#d1d5db' }} axisLine={false} tickLine={false} />
                   <YAxis tick={{ fontSize: 11, fill: '#d1d5db' }} axisLine={false} tickLine={false} width={28} />
                   <Tooltip content={<CustomTooltip />} />
-                  <Area type="monotone" dataKey="Page Views" stroke="#448834" strokeWidth={1.5} fill="url(#pvGrad)" dot={false} />
+                  <Area type="monotone" dataKey="Page Views" stroke="#b33b62" strokeWidth={1.5} fill="url(#pvGrad)" dot={false} />
                   <Area type="monotone" dataKey="Visitors" stroke="#cbd5e1" strokeWidth={1.5} fill="url(#sesGrad)" dot={false} />
                 </AreaChart>
               </ResponsiveContainer>
@@ -232,7 +232,7 @@ export default function Analitik() {
                       <span className="text-xs text-gray-500 truncate flex-1 min-w-0">{p.x}</span>
                       <div className="w-20 h-1 bg-gray-100 rounded-full overflow-hidden shrink-0">
                         <div
-                          className="h-full bg-[#448834] rounded-full"
+                          className="h-full bg-[#b33b62] rounded-full"
                           style={{ width: `${(p.y / maxPages) * 100}%`, opacity: 1 - i * 0.07 }}
                         />
                       </div>

@@ -34,7 +34,7 @@ function Transcript({ conversation }) {
           <div
             className={`max-w-[80%] px-3.5 py-2 rounded-xl text-sm leading-relaxed whitespace-pre-wrap ${
               m.role === 'user'
-                ? 'bg-[#448834] text-white rounded-br-sm'
+                ? 'bg-[#b33b62] text-white rounded-br-sm'
                 : 'bg-gray-50 text-gray-700 border border-gray-100 rounded-bl-sm'
             }`}
           >
@@ -277,7 +277,7 @@ function RatingsTab({ ratingData, onDeleteRating, deletingId, onPageChange }) {
               <Star size={12} className="text-amber-400 shrink-0" fill="currentColor" />
               <div className="flex-1 h-1 bg-gray-100 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-[#448834] rounded-full"
+                  className="h-full bg-[#b33b62] rounded-full"
                   style={{ width: `${(stats.counts[star] / maxCount) * 100}%` }}
                 />
               </div>

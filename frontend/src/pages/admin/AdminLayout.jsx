@@ -71,7 +71,7 @@ export default function AdminLayout() {
                 to={to}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
                   active
-                    ? 'bg-[#448834] text-white'
+                    ? 'bg-[#b33b62] text-white'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                 }`}
               >
@@ -127,7 +127,7 @@ export default function AdminLayout() {
                   key={to}
                   to={to}
                   className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all ${
-                    active ? 'bg-[#448834] text-white' : 'text-gray-600 hover:bg-gray-100'
+                    active ? 'bg-[#b33b62] text-white' : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
                   <Icon size={18} className="shrink-0" />

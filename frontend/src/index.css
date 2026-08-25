@@ -139,6 +139,221 @@
     U+2215, U+FEFF, U+FFFD;
 }
 
+/* ── Rose & Cream typography (self-hosted, same pattern as Poppins above) ── */
+/* Instrument Serif 400 */
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/InstrumentSerif-400-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/InstrumentSerif-400-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+/* Instrument Serif 400 italic */
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/InstrumentSerif-400i-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/InstrumentSerif-400i-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+/* Hanken Grotesk 400/500/600/700/800 */
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/HankenGrotesk-400-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/HankenGrotesk-400-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/HankenGrotesk-500-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/HankenGrotesk-500-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/HankenGrotesk-600-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/HankenGrotesk-600-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/HankenGrotesk-700-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/HankenGrotesk-700-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/HankenGrotesk-800-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/HankenGrotesk-800-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+/* ── Rose & Cream design tokens ──────────────────────────────
+   The palette and type pairing from the Rose & Cream direction, added as
+   Tailwind v4 theme tokens (utilities: bg-paper, text-ink, font-display, …) so
+   screens can move onto them one at a time. Nothing existing is redefined —
+   the legacy green/yellow values and Poppins stay in place until a page is
+   migrated. Currently used by: the recipe detail page. */
+@theme {
+  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+  --color-paper: #fdf8f4;
+  --color-shell: #f6ebe2;
+  --color-ink: #241a18;
+  --color-body: #5f4e48;
+  --color-muted: #94807a;
+  --color-line: #eedfd5;
+  --color-line-strong: #e4d2c6;
+  --color-brand: #b33b62;
+  --color-brand-deep: #8e2c4d;
+  --color-brand-tint: #fbedf1;
+  --color-blush: #f5a3b8;
+  --color-clay: #c2683f;
+  --color-cocoa: #1f1512;
+
+  /* ── Warm neutral ramp ──────────────────────────────────────
+     Tailwind's stock gray is blue-cold and fought the cream palette on every
+     screen that had not been migrated by hand. Redefining the scale here moves
+     the whole app onto warm tones at once: every existing bg-gray-50 /
+     text-gray-400 / border-gray-100 in the pages keeps working and simply
+     resolves warm. zinc is aliased to the same values because a handful of
+     admin screens reach for it interchangeably. */
+  --color-gray-50: #fdf8f4;
+  --color-gray-100: #f6ebe2;
+  --color-gray-200: #eedfd5;
+  --color-gray-300: #e4d2c6;
+  --color-gray-400: #a89189;
+  --color-gray-500: #94807a;
+  --color-gray-600: #7a655e;
+  --color-gray-700: #5f4e48;
+  --color-gray-800: #3d2e29;
+  --color-gray-900: #241a18;
+  --color-gray-950: #1f1512;
+
+  --color-zinc-50: #fdf8f4;
+  --color-zinc-100: #f6ebe2;
+  --color-zinc-200: #eedfd5;
+  --color-zinc-300: #e4d2c6;
+  --color-zinc-400: #a89189;
+  --color-zinc-500: #94807a;
+  --color-zinc-600: #7a655e;
+  --color-zinc-700: #5f4e48;
+  --color-zinc-800: #3d2e29;
+  --color-zinc-900: #241a18;
+  --color-zinc-950: #1f1512;
+}
+
 @keyframes wave {
   0% {
     transform: translateX(0);
@@ -189,18 +404,18 @@
 .ai-button-ring {
   background: conic-gradient(
     from var(--border-angle),
-    #448834,
-    #f5ce31,
-    #448834
+    #b33b62,
+    #f5a3b8,
+    #b33b62
   );
   animation: border-spin 5s linear infinite;
 }
 .brand-loader-ring {
   background: conic-gradient(
     from var(--border-angle),
-    #448834,
-    #f5ce31,
-    #448834
+    #b33b62,
+    #f5a3b8,
+    #b33b62
   );
   animation:
     border-spin 1s linear infinite,
@@ -277,29 +492,31 @@
 .blog-content h2,
 .blog-content h3,
 .blog-content h4 {
-  font-weight: 700;
-  color: #1f2937;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-  line-height: 1.3;
+  font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  color: #241a18;
+  letter-spacing: -0.01em;
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  line-height: 1.14;
 }
 .blog-content h1 {
-  font-size: 1.875rem;
+  font-size: 2.75rem;
 }
 .blog-content h2 {
-  font-size: 1.5rem;
+  font-size: 2.25rem;
 }
 .blog-content h3 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 .blog-content h4 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
 }
 
 .blog-content p {
   margin-bottom: 1.25rem;
   line-height: 1.8;
-  color: #374151;
+  color: #5f4e48;
 }
 
 .blog-content ul,
@@ -316,32 +533,37 @@
 .blog-content li {
   margin-bottom: 0.4rem;
   line-height: 1.75;
-  color: #374151;
+  color: #5f4e48;
 }
 
 .blog-content strong {
   font-weight: 700;
-  color: #111827;
+  color: #241a18;
 }
 .blog-content em {
   font-style: italic;
 }
 
 .blog-content a {
-  color: #c2410c;
+  color: #b33b62;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 .blog-content a:hover {
-  color: #9a3412;
+  color: #8e2c4d;
 }
 
 .blog-content blockquote {
-  border-left: 4px solid #ea580c;
-  padding-left: 1rem;
-  margin: 1.5rem 0;
-  color: #6b7280;
+  border-left: 3px solid #b33b62;
+  background: #fbedf1;
+  border-radius: 0 0.875rem 0.875rem 0;
+  padding: 1.375rem 1.625rem;
+  margin: 2rem 0;
+  color: #8e2c4d;
+  font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
   font-style: italic;
+  font-size: 1.375rem;
+  line-height: 1.45;
 }
 
 .food-photo {
@@ -373,7 +595,7 @@
 
 .blog-content hr {
   border: none;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid #eedfd5;
   margin: 2rem 0;
 }
 
@@ -384,7 +606,7 @@
 }
 
 .blog-content pre {
-  background: #f3f4f6;
+  background: #f6ebe2;
   border-radius: 0.5rem;
   padding: 1rem;
   overflow-x: auto;
@@ -392,10 +614,67 @@
 }
 
 .blog-content code {
-  background: #f3f4f6;
+  background: #f6ebe2;
   padding: 0.15rem 0.4rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
+}
+
+/* ── Recipe-only article treatment ───────────────────────────
+   The Rose & Cream typography now lives on .blog-content itself, so every
+   article body (recipes, guides, legal) shares it. What stays scoped to
+   .recipe-article is the list treatment below: numbered rose discs read as
+   method steps on a recipe and would be wrong on a legal page's numbered
+   clauses, so those keep the plain decimal/disc markers. */
+
+/* Method steps: numbered discs, driven by a counter so the stored <ol> HTML
+   stays exactly as the editor wrote it. */
+.recipe-article .blog-content ol {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: recipe-step;
+}
+.recipe-article .blog-content ol > li {
+  counter-increment: recipe-step;
+  position: relative;
+  padding-left: 3.5rem;
+  margin-bottom: 1.375rem;
+}
+.recipe-article .blog-content ol > li::before {
+  content: counter(recipe-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 9999px;
+  background: #b33b62;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.recipe-article .blog-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+.recipe-article .blog-content ul > li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+.recipe-article .blog-content ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #c2683f;
 }
 
 @layer base {
@@ -404,9 +683,24 @@
   }
 
   body {
-    font-family: "Poppins", sans-serif;
-    color: #1a1a1a;
-    background: #fff;
+    font-family: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+    color: #5f4e48;
+    background: #fdf8f4;
     margin: 0;
+  }
+
+  /* Display face on every heading, so a screen picks up the Rose & Cream
+     voice without each one restating font-display. Anything that needs the
+     grotesk instead (admin table headers, stat tiles) sets font-body locally. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    color: #241a18;
+    letter-spacing: -0.01em;
   }
 }

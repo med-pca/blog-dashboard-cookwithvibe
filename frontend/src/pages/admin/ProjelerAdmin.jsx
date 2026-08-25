@@ -92,7 +92,7 @@ function SortableRow({
       <td className="px-5 py-5 text-sm text-gray-500 hidden sm:table-cell">
         {p.location}
       </td>
-      <td className="px-5 py-5 text-sm font-semibold text-[#448834] hidden sm:table-cell">
+      <td className="px-5 py-5 text-sm font-semibold text-[#b33b62] hidden sm:table-cell">
         {p.kw} recipes
       </td>
       <td className="px-5 py-5">
@@ -116,7 +116,7 @@ function SortableRow({
         <div className="flex items-center gap-2 justify-end">
           <Link
             to={`/rnl-panel/projeler/${p.id}/duzenle`}
-            className="p-2 text-gray-400 hover:text-[#448834] hover:bg-green-50 rounded-lg transition-colors"
+            className="p-2 text-gray-400 hover:text-[#b33b62] hover:bg-green-50 rounded-lg transition-colors"
           >
             <Pencil size={17} />
           </Link>
@@ -225,9 +225,9 @@ export default function ProjelerAdmin() {
           <h1 className="text-xl font-bold text-gray-900">Collections</h1>
           <p className="text-sm text-gray-400 mt-0.5">
             {projects.length} collections
-            {saving && <span className="ml-2 text-[#448834]">· saving...</span>}
+            {saving && <span className="ml-2 text-[#b33b62]">· saving...</span>}
             {syncResult?.started && (
-              <span className="ml-2 text-[#448834]">
+              <span className="ml-2 text-[#b33b62]">
                 · Instagram sync started, refreshing in 30 seconds...
               </span>
             )}
@@ -237,7 +237,7 @@ export default function ProjelerAdmin() {
           <button
             onClick={handleSync}
             disabled={syncing}
-            className="inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-[#448834] hover:text-[#448834] text-gray-600 font-semibold px-3 sm:px-4 py-2 rounded-lg transition-colors text-sm disabled:opacity-50"
+            className="inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-[#b33b62] hover:text-[#b33b62] text-gray-600 font-semibold px-3 sm:px-4 py-2 rounded-lg transition-colors text-sm disabled:opacity-50"
           >
             <RefreshCw size={15} className={syncing ? "animate-spin" : ""} />
             <span className="hidden sm:inline">
@@ -246,7 +246,7 @@ export default function ProjelerAdmin() {
           </button>
           <Link
             to="/rnl-panel/projeler/yeni"
-            className="inline-flex items-center gap-2 bg-[#448834] hover:bg-[#357228] text-white font-bold px-4 py-2 rounded-lg transition-colors text-sm"
+            className="inline-flex items-center gap-2 bg-[#b33b62] hover:bg-[#8e2c4d] text-white font-bold px-4 py-2 rounded-lg transition-colors text-sm"
           >
             <Plus size={16} />
             New Collection
@@ -261,7 +261,7 @@ export default function ProjelerAdmin() {
           <p className="mb-4">No collections yet.</p>
           <Link
             to="/rnl-panel/projeler/yeni"
-            className="text-[#448834] font-semibold hover:underline"
+            className="text-[#b33b62] font-semibold hover:underline"
           >
             Add the first collection
           </Link>
