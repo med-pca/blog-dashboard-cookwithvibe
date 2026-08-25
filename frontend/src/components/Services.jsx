@@ -172,12 +172,12 @@ export default function Services() {
       className="relative py-24 bg-gradient-to-b from-white to-amber-50/40 overflow-hidden"
     >
       {/* Decorative background */}
-      <div className="absolute left-0 bottom-0 w-187.5 h-187.5 pointer-events-none select-none opacity-70">
+      <div className="absolute -left-24 -bottom-28 w-187.5 h-187.5 pointer-events-none select-none opacity-[0.14]">
         <img
-          src="/food/illustration-2.svg"
+          src="/food/illustration-2.webp"
           alt=""
-          width="639"
-          height="565"
+          width="1100"
+          height="1065"
           className="w-full h-full object-contain object-bottom-left"
           loading="lazy"
         />

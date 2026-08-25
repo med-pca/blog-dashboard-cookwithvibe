@@ -71,12 +71,12 @@ export default function HowItWorks() {
               className={`flex flex-col text-center ${i === 0 || i === 3 ? "md:mt-16" : ""}`}
             >
               {/* Image with number badge */}
-              <div className="relative mb-5 w-3/4 mx-auto pt-3 pl-3">
-                <div className="aspect-square overflow-hidden rounded-xl">
+              <div className="relative mb-5 w-4/5 sm:w-3/4 mx-auto pt-3 pl-3">
+                <div className="aspect-square overflow-hidden rounded-2xl bg-[#fffaf7] ring-1 ring-[#8e2c4d]/8 shadow-[0_18px_45px_rgba(142,44,77,0.08)] p-3 sm:p-4">
                   <img
                     src={s.img}
                     alt={s.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain drop-shadow-[0_10px_18px_rgba(69,43,31,0.12)]"
                     loading="lazy"
                   />
                 </div>
