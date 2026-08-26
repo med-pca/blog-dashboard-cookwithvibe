@@ -14,6 +14,7 @@ export type AdSlots = Record<AdPlacement, string>
 
 export interface AdsSettings {
   enabled: boolean
+  autoAds: boolean
   clientId: string
   slots: AdSlots
 }
@@ -27,6 +28,7 @@ export const EMPTY_SLOTS: AdSlots = {
 
 export const DEFAULT_SETTINGS: AdsSettings = {
   enabled: false,
+  autoAds: false,
   clientId: '',
   slots: { ...EMPTY_SLOTS },
 }

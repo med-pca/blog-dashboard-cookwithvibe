@@ -5,6 +5,7 @@ import * as Sentry from "@sentry/react";
 import "./index.css";
 import App from "./App.jsx";
 import { getAdsConfig } from "./api/ads";
+import { ensureAdSenseMeta, isAdSenseEligiblePath, loadAdSenseScript } from "./lib/adsense";
 
 const sentryDsn = import.meta.env.VITE_SENTRY_DSN;
 if (sentryDsn) {
@@ -26,16 +27,14 @@ if (umamiUrl && umamiId) {
   document.head.appendChild(s);
 }
 
-// AdSense site verification needs this meta tag on every page. The publisher id
-// is managed from the admin panel, so it is read at runtime; the AdSense script
-// itself is loaded lazily by AdSenseBlock, only on pages that actually show ads.
+// The verification meta remains available before ads are approved/enabled.
+// Auto Ads is separate and deliberately excluded from admin/legal routes.
 getAdsConfig().then((ads) => {
-  if (!ads.enabled || !ads.clientId) return;
-  if (document.querySelector('meta[name="google-adsense-account"]')) return;
-  const m = document.createElement("meta");
-  m.setAttribute("name", "google-adsense-account");
-  m.setAttribute("content", ads.clientId);
-  document.head.appendChild(m);
+  if (!ads.clientId) return;
+  ensureAdSenseMeta(ads.clientId);
+  if (ads.enabled && ads.autoAds && isAdSenseEligiblePath(window.location.pathname)) {
+    loadAdSenseScript(ads.clientId).catch(() => {});
+  }
 });
 
 createRoot(document.getElementById("root")).render(

@@ -13,6 +13,7 @@ function makeService(stored?: string): { service: AdsService; save: jest.Mock } 
 
 const FULL = JSON.stringify({
   enabled: true,
+  autoAds: true,
   clientId: 'ca-pub-1234567890123456',
   slots: {
     blogList: '1111111111',
@@ -27,6 +28,7 @@ describe('AdsService', () => {
     const { service } = makeService()
     await expect(service.get()).resolves.toEqual({
       enabled: false,
+      autoAds: false,
       clientId: '',
       slots: { blogList: '', blogArticleTop: '', blogArticleBottom: '', recipeDetail: '' },
     })
@@ -47,15 +49,17 @@ describe('AdsService', () => {
     const { service } = makeService(FULL)
     const pub = await service.getPublic()
     expect(pub.enabled).toBe(true)
+    expect(pub.autoAds).toBe(true)
     expect(pub.clientId).toBe('ca-pub-1234567890123456')
     expect(pub.slots.blogList).toBe('1111111111')
   })
 
-  it('hides the client id publicly when ads are disabled', async () => {
+  it('keeps the verification id public but hides ads when disabled', async () => {
     const { service } = makeService(JSON.stringify({ ...JSON.parse(FULL), enabled: false }))
     await expect(service.getPublic()).resolves.toEqual({
       enabled: false,
-      clientId: '',
+      autoAds: false,
+      clientId: 'ca-pub-1234567890123456',
       slots: { blogList: '', blogArticleTop: '', blogArticleBottom: '', recipeDetail: '' },
     })
   })
@@ -70,6 +74,7 @@ describe('AdsService', () => {
     const next = await service.update({ slots: { blogArticleBottom: '3333333333' } })
 
     expect(next.enabled).toBe(true)
+    expect(next.autoAds).toBe(true)
     expect(next.clientId).toBe('ca-pub-1234567890123456')
     expect(next.slots.blogList).toBe('1111111111')
     expect(next.slots.blogArticleBottom).toBe('3333333333')
@@ -92,6 +97,13 @@ describe('AdsService', () => {
     const next = await service.update({ enabled: false })
     expect(next.enabled).toBe(false)
     expect(next.slots.blogList).toBe('1111111111')
+  })
+
+  it('keeps Auto Ads off for old stored settings until explicitly enabled', async () => {
+    const old = JSON.parse(FULL)
+    delete old.autoAds
+    const { service } = makeService(JSON.stringify(old))
+    await expect(service.get()).resolves.toMatchObject({ autoAds: false })
   })
 
   it('builds the ads.txt line from the publisher id', async () => {

@@ -27,6 +27,11 @@ export class UpdateAdsDto {
   enabled?: boolean
 
   @IsOptional()
+  @IsBoolean()
+  @Transform(({ value }) => value === true || value === 'true')
+  autoAds?: boolean
+
+  @IsOptional()
   @IsString()
   @MaxLength(64)
   @Matches(CLIENT_ID, { message: 'clientId must look like ca-pub-1234567890123456' })

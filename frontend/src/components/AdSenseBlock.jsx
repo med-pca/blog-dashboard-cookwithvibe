@@ -1,28 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { getAdsConfig } from '../api/ads'
-
-// The AdSense loader is injected once per page load, only when a configured and
-// enabled slot is actually about to render — a visitor who never reaches a page
-// with ads never gets the third-party script.
-let scriptPromise = null
-
-function loadAdSense(clientId) {
-  if (scriptPromise) return scriptPromise
-
-  scriptPromise = new Promise((resolve, reject) => {
-    const script = document.createElement('script')
-    script.async = true
-    script.crossOrigin = 'anonymous'
-    script.src =
-      'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' +
-      encodeURIComponent(clientId)
-    script.onload = resolve
-    script.onerror = reject
-    document.head.appendChild(script)
-  })
-
-  return scriptPromise
-}
+import { loadAdSenseScript } from '../lib/adsense'
 
 /**
  * Renders one AdSense unit for a named placement. The slot id comes from the
@@ -50,7 +28,7 @@ export default function AdSenseBlock({ placement, className = '', label = 'Adver
     if (!slot || !clientId || pushed.current) return
 
     let cancelled = false
-    loadAdSense(clientId)
+    loadAdSenseScript(clientId)
       .then(() => {
         if (cancelled || pushed.current) return
         pushed.current = true

@@ -19,6 +19,7 @@ describe('UpdateAdsDto', () => {
     await expect(
       errorsFor({
         enabled: true,
+        autoAds: true,
         clientId: 'ca-pub-1234567890123456',
         slots: {
           blogList: '1234567890',
@@ -60,5 +61,11 @@ describe('UpdateAdsDto', () => {
     const dto = plainToInstance(UpdateAdsDto, { enabled: 'true' })
     expect(dto.enabled).toBe(true)
     await expect(errorsFor({ enabled: 'true' })).resolves.toEqual([])
+  })
+
+  it('accepts and coerces the Auto Ads flag', async () => {
+    const dto = plainToInstance(UpdateAdsDto, { autoAds: 'true' })
+    expect(dto.autoAds).toBe(true)
+    await expect(errorsFor({ autoAds: 'true' })).resolves.toEqual([])
   })
 })

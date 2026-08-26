@@ -29,13 +29,16 @@ export class AdsService {
     }
   }
 
-  // What the public site is allowed to see. Ads stay off unless they are both
-  // enabled and actually configured, so the frontend never injects a script for
-  // a half-filled setup.
+  // The publisher id is intentionally public (it is present in every AdSense
+  // tag) so Google can verify the site before ads are enabled. Slots remain
+  // hidden while the master switch is off.
   async getPublic(): Promise<AdsSettings> {
     const settings = await this.get()
-    if (!settings.enabled || !settings.clientId) {
-      return { enabled: false, clientId: '', slots: { ...EMPTY_SLOTS } }
+    if (!settings.clientId) {
+      return { enabled: false, autoAds: false, clientId: '', slots: { ...EMPTY_SLOTS } }
+    }
+    if (!settings.enabled) {
+      return { enabled: false, autoAds: false, clientId: settings.clientId, slots: { ...EMPTY_SLOTS } }
     }
     return settings
   }
@@ -53,6 +56,7 @@ export class AdsService {
     const current = await this.get()
     const next = this.normalise({
       enabled: dto.enabled ?? current.enabled,
+      autoAds: dto.autoAds ?? current.autoAds,
       clientId: dto.clientId ?? current.clientId,
       slots: { ...current.slots, ...(dto.slots ?? {}) },
     })
@@ -71,6 +75,7 @@ export class AdsService {
     }
     return {
       enabled: raw.enabled === true,
+      autoAds: raw.autoAds === true,
       clientId: typeof raw.clientId === 'string' ? raw.clientId.trim() : '',
       slots,
     }

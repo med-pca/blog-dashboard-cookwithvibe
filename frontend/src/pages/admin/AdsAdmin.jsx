@@ -43,7 +43,7 @@ export default function AdsAdmin() {
   const { logout } = useAdminAuth()
   const navigate = useNavigate()
 
-  const [form, setForm] = useState({ enabled: false, clientId: '', slots: { ...EMPTY_SLOTS } })
+  const [form, setForm] = useState({ enabled: false, autoAds: false, clientId: '', slots: { ...EMPTY_SLOTS } })
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
@@ -159,6 +159,23 @@ export default function AdsAdmin() {
           )}
         </div>
 
+        <div className="bg-amber-50 rounded-2xl border border-amber-100 p-5">
+          <p className="text-sm font-semibold text-amber-900">Before turning ads on</p>
+          <ol className="mt-3 space-y-2 text-xs text-amber-800 list-decimal pl-4">
+            <li>Add <strong>cookwithvibe.com</strong> in AdSense → Sites and wait for “Ready”.</li>
+            <li>
+              In Privacy &amp; messaging, publish a European regulations message using a
+              Google-certified CMP for the EEA, UK and Switzerland.
+            </li>
+            <li>Create responsive display units, paste their slot IDs below, then check /ads.txt.</li>
+            <li>Never click your own ads or ask visitors to click them.</li>
+          </ol>
+          <p className="text-xs text-amber-700 mt-3">
+            Keep the master switch off during review. Saving the Publisher ID is enough for
+            site verification and ads.txt.
+          </p>
+        </div>
+
         {/* Publisher id */}
         <div className="bg-white rounded-2xl border border-gray-100 p-5">
           <label className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -179,6 +196,34 @@ export default function AdsAdmin() {
             <p className="text-xs text-red-500 mt-1.5">
               Must look like ca-pub- followed by 16 digits.
             </p>
+          )}
+        </div>
+
+        <div className="bg-white rounded-2xl border border-gray-100 p-5">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setForm((f) => ({ ...f, autoAds: !f.autoAds }))}
+              className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
+                form.autoAds ? 'bg-[#b33b62]' : 'bg-gray-200'
+              }`}
+              aria-label="Toggle Auto Ads"
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${
+                  form.autoAds ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
+            <div>
+              <p className="text-sm font-semibold text-gray-800">Google Auto Ads</p>
+              <p className="text-xs text-gray-400 mt-0.5">
+                Optional. Also enable Auto Ads in AdSense. Admin and legal pages are excluded.
+              </p>
+            </div>
+          </div>
+          {form.autoAds && !form.enabled && (
+            <p className="text-xs text-amber-600 mt-3">Auto Ads will start only when the master switch is on.</p>
           )}
         </div>
 

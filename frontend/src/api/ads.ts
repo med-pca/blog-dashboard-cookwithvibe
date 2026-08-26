@@ -12,6 +12,7 @@ export type AdSlots = Record<AdPlacement, string>
 
 export interface AdsSettings {
   enabled: boolean
+  autoAds: boolean
   clientId: string
   slots: AdSlots
 }
@@ -23,7 +24,7 @@ export const EMPTY_SLOTS: AdSlots = {
   recipeDetail: '',
 }
 
-const ADS_OFF: AdsSettings = { enabled: false, clientId: '', slots: { ...EMPTY_SLOTS } }
+const ADS_OFF: AdsSettings = { enabled: false, autoAds: false, clientId: '', slots: { ...EMPTY_SLOTS } }
 
 // The public config is the same for every visitor, so it is fetched once per
 // page load and shared by every ad slot on the page.
