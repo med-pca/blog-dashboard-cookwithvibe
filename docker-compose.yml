@@ -4,13 +4,13 @@ services:
     restart: unless-stopped
     mem_limit: 1g
     environment:
-      POSTGRES_USER: renel
+      POSTGRES_USER: cookwithvibe
       POSTGRES_PASSWORD: ${DB_PASS}
-      POSTGRES_DB: renel_enerji
+      POSTGRES_DB: cookwithvibe
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U renel -d renel_enerji"]
+      test: ["CMD-SHELL", "pg_isready -U cookwithvibe -d cookwithvibe"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -31,9 +31,9 @@ services:
       PORT: "3001"
       DB_HOST: db
       DB_PORT: "5432"
-      DB_USER: renel
+      DB_USER: cookwithvibe
       DB_PASS: ${DB_PASS}
-      DB_NAME: renel_enerji
+      DB_NAME: cookwithvibe
       JWT_SECRET: ${JWT_SECRET}
       APP_ENCRYPTION_KEY: ${APP_ENCRYPTION_KEY}
       JWT_EXPIRES_IN: 8h
