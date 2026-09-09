@@ -177,6 +177,12 @@ export default function NedenBizDetay() {
       <SEO
         title={page.title}
         description={`${page.subtitle} ${page.description}`.slice(0, 160)}
+        // page.photo is the SVG the page renders, which no social network will
+        // display — the .webp twin gives each entry its own share image.
+        image={`${SITE_URL}${page.photo.replace(/\.svg$/, ".webp")}`}
+        imageAlt={page.title}
+        imageWidth={1254}
+        imageHeight={1254}
         jsonLd={jsonLd}
       />
       <PageHeader

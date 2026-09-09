@@ -21,8 +21,12 @@ import {
   submitBlogComment,
 } from "../api/blog.js";
 import { formatDate } from "../lib/date.js";
-import { fallbackCover, resolveCoverSrc } from "../lib/postCover.js";
-import { SITE_URL } from "../lib/site";
+import {
+  fallbackCover,
+  fallbackSocialCover,
+  resolveCoverSrc,
+} from "../lib/postCover.js";
+import { SITE_NAME, SITE_URL } from "../lib/site";
 
 const RECIPE_HEADING_PATTERN =
   /ingredients|method|instructions|directions|step-by-step/i;
@@ -178,7 +182,14 @@ export default function BlogDetay() {
     ? /^https?:\/\//i.test(post.coverImage)
       ? post.coverImage
       : `${SITE_URL}${post.coverImage}`
-    : `${SITE_URL}${fallbackCover(post.slug || slug)}`;
+    : // The page can render the SVG illustration, but a share cannot: the
+      // social networks all drop SVG, so the card points at the .webp twin.
+      `${SITE_URL}${fallbackSocialCover(post.slug || slug)}`;
+
+  // course/cuisine are the only taxonomy a post carries, and they are exactly
+  // what a reader filters on ("Dessert", "Italian") — so they become the
+  // article's section and tags rather than inventing a new field.
+  const articleTags = [post.course, post.cuisine].filter(Boolean);
 
   const blogSchema = {
     "@context": "https://schema.org",
@@ -216,7 +227,13 @@ export default function BlogDetay() {
         title={post.title}
         description={post.metaDescription || post.excerpt || post.title}
         image={absoluteImage}
+        imageAlt={post.title}
         type="article"
+        publishedTime={post.publishedAt || post.createdAt}
+        modifiedTime={post.updatedAt || post.publishedAt || post.createdAt}
+        author={post.authorName || SITE_NAME}
+        section={post.course || undefined}
+        tags={articleTags}
         jsonLd={blogSchema}
       />
       <article className="recipe-article bg-[#fffdf8]">
