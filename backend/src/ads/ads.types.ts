@@ -16,6 +16,8 @@ export interface AdsSettings {
   enabled: boolean
   clientId: string
   additionalAdsTxt: string
+  headerScripts: string
+  footerScripts: string
   slots: AdSlots
 }
 
@@ -30,5 +32,7 @@ export const DEFAULT_SETTINGS: AdsSettings = {
   enabled: false,
   clientId: '',
   additionalAdsTxt: '',
+  headerScripts: '',
+  footerScripts: '',
   slots: { ...EMPTY_SLOTS },
 }

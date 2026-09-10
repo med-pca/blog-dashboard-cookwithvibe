@@ -23,12 +23,25 @@ const FULL = JSON.stringify({
 })
 
 describe('AdsService', () => {
+  it('persists scripts, preserves them on partial updates and supports clearing', async () => {
+    const headerScripts = '<script src="https://example.com/header.js" async></script>'
+    const footerScripts = '<script src="https://example.com/footer.js"></script>'
+    const { service, save } = makeService(FULL)
+    const result = await service.update({ headerScripts, footerScripts })
+    expect(JSON.parse(save.mock.calls[0][0].value)).toMatchObject({ headerScripts, footerScripts })
+    const stored = makeService(JSON.stringify(result)).service
+    expect(await stored.update({ enabled: false })).toMatchObject({ headerScripts, footerScripts })
+    expect(await stored.update({ headerScripts: '', footerScripts: '' })).toMatchObject({ headerScripts: '', footerScripts: '' })
+  })
+
   it('returns disabled defaults when nothing is stored', async () => {
     const { service } = makeService()
     await expect(service.get()).resolves.toEqual({
       enabled: false,
       clientId: '',
       additionalAdsTxt: '',
+      headerScripts: '',
+      footerScripts: '',
       slots: { blogList: '', blogArticleTop: '', blogArticleBottom: '', recipeDetail: '' },
     })
   })

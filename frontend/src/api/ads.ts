@@ -18,6 +18,14 @@ export interface AdsSettings {
 
 export interface AdminAdsSettings extends AdsSettings {
   additionalAdsTxt: string
+  headerScripts: string
+  footerScripts: string
+}
+
+export async function fetchSiteScripts(): Promise<Pick<AdminAdsSettings, 'headerScripts' | 'footerScripts'>> {
+  const res = await fetch(`${API}/api/ads/scripts`, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Could not load site scripts')
+  return res.json()
 }
 
 export const EMPTY_SLOTS: AdSlots = {

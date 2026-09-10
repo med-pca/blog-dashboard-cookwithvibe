@@ -10,6 +10,7 @@ import { useEffect, lazy, Suspense, useState, useRef } from "react";
 import { Bot } from "lucide-react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import SiteScripts from "./components/SiteScripts";
 import TeklifChatbot from "./components/TeklifChatbot";
 import PageLoader from "./components/PageLoader";
 import { AdminAuthProvider, useAdminAuth } from "./contexts/AdminAuthContext";
@@ -139,6 +140,7 @@ function PublicLayout() {
   return (
     <>
       <ScrollToTop />
+      <SiteScripts />
       <PageLoader label="" fullScreen overlay show={showRouteOverlay} />
       <Navbar />
       <main>

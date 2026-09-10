@@ -38,6 +38,16 @@ export class UpdateAdsDto {
   additionalAdsTxt?: string
 
   @IsOptional()
+  @IsString()
+  @MaxLength(20000)
+  headerScripts?: string
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(20000)
+  footerScripts?: string
+
+  @IsOptional()
   @IsObject()
   @ValidateNested()
   @Type(() => AdSlotsDto)

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Megaphone, Save, Copy, Check, ExternalLink, AlertCircle, Upload, Trash2 } from 'lucide-react'
 import { fetchAdsSettings, saveAdsSettings, EMPTY_SLOTS } from '../../api/ads'
 import { useAdminAuth } from '../../contexts/AdminAuthContext'
+import { parseSiteScripts } from '../../lib/siteScripts'
 
 const CLIENT_ID_PATTERN = /^ca-pub-\d{16}$/
 const SLOT_PATTERN = /^\d{6,20}$/
@@ -44,7 +45,7 @@ export default function AdsAdmin() {
   const { logout } = useAdminAuth()
   const navigate = useNavigate()
 
-  const [form, setForm] = useState({ enabled: false, clientId: '', additionalAdsTxt: '', slots: { ...EMPTY_SLOTS } })
+  const [form, setForm] = useState({ enabled: false, clientId: '', additionalAdsTxt: '', headerScripts: '', footerScripts: '', slots: { ...EMPTY_SLOTS } })
   const importInput = useRef(null)
   const [importing, setImporting] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -55,7 +56,7 @@ export default function AdsAdmin() {
 
   useEffect(() => {
     fetchAdsSettings()
-      .then((data) => setForm({ additionalAdsTxt: '', ...data, slots: { ...EMPTY_SLOTS, ...data.slots } }))
+      .then((data) => setForm({ additionalAdsTxt: '', headerScripts: '', footerScripts: '', ...data, slots: { ...EMPTY_SLOTS, ...data.slots } }))
       .catch((err) => {
         if (err.status === 401) {
           logout()
@@ -118,8 +119,10 @@ export default function AdsAdmin() {
     setSaved(false)
     setSaving(true)
     try {
+      parseSiteScripts(form.headerScripts)
+      parseSiteScripts(form.footerScripts)
       const next = await saveAdsSettings(form)
-      setForm({ ...next, slots: { ...EMPTY_SLOTS, ...next.slots } })
+      setForm({ headerScripts: '', footerScripts: '', ...next, slots: { ...EMPTY_SLOTS, ...next.slots } })
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)
     } catch (err) {
@@ -272,6 +275,31 @@ export default function AdsAdmin() {
             onChange={(e) => { setForm((f) => ({ ...f, additionalAdsTxt: e.target.value })); setSaved(false) }}
             className="w-full min-w-0 resize-y border border-gray-200 rounded-lg p-3 text-xs font-mono leading-5 focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]" />
           <p className="text-right text-xs text-gray-400">{form.additionalAdsTxt.length.toLocaleString()} / 100,000</p>
+        </section>
+
+        <section className="border-t border-gray-200 pt-5 space-y-4" aria-label="Site scripts">
+          <h2 className="text-sm font-semibold text-gray-800">Site scripts</h2>
+          {[
+            ['headerScripts', 'Header scripts'],
+            ['footerScripts', 'Footer scripts'],
+          ].map(([key, label]) => (
+            <div key={key}>
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <label htmlFor={key} className="text-sm font-medium text-gray-700">{label}</label>
+                <button type="button" title={`Clear ${label.toLowerCase()}`} aria-label={`Clear ${label.toLowerCase()}`}
+                  disabled={saving || !form[key]}
+                  onClick={() => { setForm((f) => ({ ...f, [key]: '' })); setSaved(false) }}
+                  className="p-2 rounded-lg text-gray-500 hover:bg-red-50 hover:text-red-600 disabled:opacity-40">
+                  <Trash2 size={16} />
+                </button>
+              </div>
+              <textarea id={key} rows={5} maxLength={20000} value={form[key]} disabled={saving}
+                spellCheck={false} autoCapitalize="off" autoCorrect="off"
+                placeholder={'<script src="https://example.com/script.js" async></script>'}
+                onChange={(e) => { setForm((f) => ({ ...f, [key]: e.target.value })); setSaved(false) }}
+                className="w-full min-w-0 resize-y border border-gray-200 rounded-lg p-3 text-xs font-mono leading-5 focus:outline-none focus:ring-2 focus:ring-[#448834]/30 focus:border-[#448834]" />
+            </div>
+          ))}
         </section>
 
         {error && (

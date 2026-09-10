@@ -15,6 +15,21 @@ vi.mock('../../../contexts/AdminAuthContext', () => {
 })
 
 describe('AdsAdmin additional ads.txt', () => {
+  it('saves scripts without executing them in the admin', async () => {
+    await open()
+    const tag = '<script src="https://d3u598arehftfk.cloudfront.net/prebid_hb_39706_43524.js" async></script>'
+    fireEvent.change(screen.getByLabelText('Header scripts'), { target: { value: tag } })
+    fireEvent.click(screen.getByRole('button', { name: 'Save Changes' }))
+    await waitFor(() => expect(saveAdsSettings).toHaveBeenCalledWith(expect.objectContaining({ headerScripts: tag })))
+    expect(document.querySelector('script[src*="prebid_hb"]')).toBeNull()
+  })
+  it('rejects inline scripts before saving', async () => {
+    await open()
+    fireEvent.change(screen.getByLabelText('Header scripts'), { target: { value: '<script>alert(1)</script>' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Save Changes' }))
+    expect(await screen.findByText(/Inline JavaScript and other HTML are not supported/)).toBeInTheDocument()
+    expect(saveAdsSettings).not.toHaveBeenCalled()
+  })
   beforeEach(() => {
     vi.clearAllMocks()
     fetchAdsSettings.mockResolvedValue({ enabled: false, clientId: '', slots: {}, additionalAdsTxt: 'example.com, 1, DIRECT' })

@@ -32,7 +32,7 @@ export class AdsService {
   // What the public site is allowed to see. Ads stay off unless they are both
   // enabled and actually configured, so the frontend never injects a script for
   // a half-filled setup.
-  async getPublic(): Promise<Omit<AdsSettings, 'additionalAdsTxt'>> {
+  async getPublic(): Promise<Pick<AdsSettings, 'enabled' | 'clientId' | 'slots'>> {
     const settings = await this.get()
     if (!settings.enabled || !settings.clientId) {
       return { enabled: false, clientId: '', slots: { ...EMPTY_SLOTS } }
@@ -57,6 +57,8 @@ export class AdsService {
       enabled: dto.enabled ?? current.enabled,
       clientId: dto.clientId ?? current.clientId,
       additionalAdsTxt: dto.additionalAdsTxt ?? current.additionalAdsTxt,
+      headerScripts: dto.headerScripts ?? current.headerScripts,
+      footerScripts: dto.footerScripts ?? current.footerScripts,
       slots: { ...current.slots, ...(dto.slots ?? {}) },
     })
 
@@ -74,6 +76,8 @@ export class AdsService {
     }
     return {
       enabled: raw.enabled === true,
+      headerScripts: typeof raw.headerScripts === 'string' ? raw.headerScripts.trim() : '',
+      footerScripts: typeof raw.footerScripts === 'string' ? raw.footerScripts.trim() : '',
       clientId: typeof raw.clientId === 'string' ? raw.clientId.trim() : '',
       additionalAdsTxt: typeof raw.additionalAdsTxt === 'string'
         ? raw.additionalAdsTxt.replace(/\r\n?/g, '\n').trim()
