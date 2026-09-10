@@ -16,6 +16,10 @@ export interface AdsSettings {
   slots: AdSlots
 }
 
+export interface AdminAdsSettings extends AdsSettings {
+  additionalAdsTxt: string
+}
+
 export const EMPTY_SLOTS: AdSlots = {
   blogList: '',
   blogArticleTop: '',
@@ -56,13 +60,13 @@ function apiError(res: Response, message: string): Error {
   return Object.assign(new Error(message), { status: res.status })
 }
 
-export async function fetchAdsSettings(): Promise<AdsSettings> {
+export async function fetchAdsSettings(): Promise<AdminAdsSettings> {
   const res = await fetch(`${API}/api/ads/admin`, authOptions())
   if (!res.ok) throw apiError(res, 'Could not load the ad settings')
   return res.json()
 }
 
-export async function saveAdsSettings(settings: AdsSettings): Promise<AdsSettings> {
+export async function saveAdsSettings(settings: AdminAdsSettings): Promise<AdminAdsSettings> {
   const res = await fetch(`${API}/api/ads/admin`, authOptions({
     method: 'PUT',
     body: JSON.stringify(settings),

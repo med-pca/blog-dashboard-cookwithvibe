@@ -10,12 +10,12 @@ export class AdsTxtController {
 
   @Get()
   @Header('Content-Type', 'text/plain; charset=utf-8')
-  @Header('Cache-Control', 'public, max-age=3600')
+  @Header('Cache-Control', 'no-cache')
   async getAdsTxt(): Promise<string> {
     const line = await this.service.adsTxt()
     // An ads.txt that exists but names no seller tells Google that nobody is
     // authorised, which blocks ads outright — strictly worse than serving no
-    // file at all. So 404 until a publisher id is configured.
+    // file at all. So 404 until a publisher or additional content is configured.
     if (!line) throw new NotFoundException()
     return line
   }

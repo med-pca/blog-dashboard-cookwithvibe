@@ -33,6 +33,11 @@ export class UpdateAdsDto {
   clientId?: string
 
   @IsOptional()
+  @IsString()
+  @MaxLength(100000)
+  additionalAdsTxt?: string
+
+  @IsOptional()
   @IsObject()
   @ValidateNested()
   @Type(() => AdSlotsDto)

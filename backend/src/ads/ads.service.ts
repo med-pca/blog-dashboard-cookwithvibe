@@ -32,21 +32,23 @@ export class AdsService {
   // What the public site is allowed to see. Ads stay off unless they are both
   // enabled and actually configured, so the frontend never injects a script for
   // a half-filled setup.
-  async getPublic(): Promise<AdsSettings> {
+  async getPublic(): Promise<Omit<AdsSettings, 'additionalAdsTxt'>> {
     const settings = await this.get()
     if (!settings.enabled || !settings.clientId) {
       return { enabled: false, clientId: '', slots: { ...EMPTY_SLOTS } }
     }
-    return settings
+    return { enabled: settings.enabled, clientId: settings.clientId, slots: settings.slots }
   }
 
-  // The line Google expects in /ads.txt; empty when no publisher id is set.
+  // Additional sellers can also be published without a Google publisher id.
   // Deliberately NOT gated on `enabled`: the file has to be reachable for Google
   // to verify the account, which happens before ads are ever switched on.
   async adsTxt(): Promise<string> {
-    const { clientId } = await this.get()
-    if (!clientId) return ''
-    return `google.com, ${clientId.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`
+    const { clientId, additionalAdsTxt } = await this.get()
+    const googleLine = clientId
+      ? `google.com, ${clientId.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`
+      : ''
+    return googleLine + (additionalAdsTxt ? `${additionalAdsTxt}\n` : '')
   }
 
   async update(dto: UpdateAdsDto): Promise<AdsSettings> {
@@ -54,6 +56,7 @@ export class AdsService {
     const next = this.normalise({
       enabled: dto.enabled ?? current.enabled,
       clientId: dto.clientId ?? current.clientId,
+      additionalAdsTxt: dto.additionalAdsTxt ?? current.additionalAdsTxt,
       slots: { ...current.slots, ...(dto.slots ?? {}) },
     })
 
@@ -72,6 +75,9 @@ export class AdsService {
     return {
       enabled: raw.enabled === true,
       clientId: typeof raw.clientId === 'string' ? raw.clientId.trim() : '',
+      additionalAdsTxt: typeof raw.additionalAdsTxt === 'string'
+        ? raw.additionalAdsTxt.replace(/\r\n?/g, '\n').trim()
+        : '',
       slots,
     }
   }
