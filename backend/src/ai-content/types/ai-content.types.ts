@@ -32,21 +32,6 @@ export interface ArticleRequest {
   timeoutMs: number
 }
 
-// The structured recipe facts, returned in the same call as the article so a
-// draft is complete on arrival — the numbers come from the model that just
-// wrote the method, which is the only point at which they are guaranteed to
-// agree with it. `isRecipe` is the model's own verdict and is not persisted:
-// it exists so a technique or planning article can say "no recipe here"
-// instead of inventing a serving count.
-export interface GeneratedRecipe {
-  isRecipe: boolean
-  prepMinutes: number | null
-  cookMinutes: number | null
-  servings: number | null
-  equipment: string | null
-  ingredients: string[]
-}
-
 // Exactly the strict JSON Schema the provider is asked to return.
 export interface GeneratedArticle {
   title: string
@@ -56,7 +41,26 @@ export interface GeneratedArticle {
   content: string
   imagePrompt: string
   suggestedKeywords: string[]
-  recipe: GeneratedRecipe
+  // Structured recipe sections: HTML fragments rendered as their own blocks on
+  // the public page, not folded into `content`.
+  ingredients: string
+  method: string
+  // Recipe card. Null means "not applicable" — the page omits that line rather
+  // than showing a blank one.
+  prepMinutes: number | null
+  cookMinutes: number | null
+  totalMinutes: number | null
+  servings: string
+  course: string
+  cuisine: string
+  calories: number | null
+  // Facebook copy generated with the article. Shape mirrors the SocialPost
+  // column on blog_posts; the service sanitises it before it is stored.
+  socialPost: {
+    captions: { angle: string; text: string }[]
+    hashtags: string[]
+    imagePrompt: string
+  }
 }
 
 export interface TopicResult {

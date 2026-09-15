@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
+import type { SocialPost } from '../social-post.types'
 import { Project } from '../../projects/entities/project.entity'
 
 @Entity('blog_posts')
@@ -30,8 +31,59 @@ export class BlogPost {
   @Column({ nullable: true })
   metaDescription: string
 
+  // Optional manual score assigned during editorial review. Null means the
+  // article has not been scored yet and keeps the public badge hidden.
+  @Column({ type: 'real', nullable: true })
+  editorialRating: number | null
+
   @Column({ type: 'text', default: '' })
   content: string
+
+  @Column({ type: 'text', default: '' })
+  ingredients: string
+
+  @Column({ type: 'text', default: '' })
+  method: string
+
+  @Column({ default: 'CookWithVibe Editorial Team' })
+  authorName: string
+
+  @Column({ type: 'text', default: '' })
+  authorBio: string
+
+  // Recipe card metadata. Every field is nullable: older posts and non-recipe
+  // articles simply render no card rather than an empty one. Times are stored
+  // as whole minutes so the page can format them and emit ISO 8601 durations
+  // for schema.org, instead of parsing free text like "about 1 hr".
+  @Column({ type: 'int', nullable: true })
+  prepMinutes: number | null
+
+  @Column({ type: 'int', nullable: true })
+  cookMinutes: number | null
+
+  // Explicit override for recipes with resting/marinating time. Left null the
+  // page shows prep + cook, so the total can never contradict its parts.
+  @Column({ type: 'int', nullable: true })
+  totalMinutes: number | null
+
+  // Free text on purpose: "8 crescents", "4-6 people", "1 loaf".
+  @Column({ type: 'varchar', length: 80, nullable: true })
+  servings: string | null
+
+  @Column({ type: 'varchar', length: 80, nullable: true })
+  course: string | null
+
+  @Column({ type: 'varchar', length: 120, nullable: true })
+  cuisine: string | null
+
+  @Column({ type: 'int', nullable: true })
+  calories: number | null
+
+  // Facebook-ready copy generated with the article: several caption variants,
+  // hashtags and a brief for a scroll-stopping image. Null on posts written
+  // before this existed and on hand-written ones.
+  @Column({ type: 'jsonb', nullable: true })
+  socialPost: SocialPost | null
 
   @Column({ nullable: true })
   coverImage: string
@@ -48,29 +100,6 @@ export class BlogPost {
   // never selected by public list endpoints and never accepted from public DTOs.
   @Column({ type: 'text', nullable: true })
   aiImagePrompt: string | null
-
-  // Structured recipe facts. Produced by the AI pipeline in the same call as
-  // the article body, so a draft arrives complete, and correctable by an admin
-  // before publication. All of them stay empty on non-recipe posts (technique
-  // and planning guides): the detail page then renders without the recipe
-  // panels rather than showing an empty card.
-  @Column({ type: 'int', nullable: true })
-  prepMinutes: number | null
-
-  @Column({ type: 'int', nullable: true })
-  cookMinutes: number | null
-
-  @Column({ type: 'int', nullable: true })
-  servings: number | null
-
-  // Free text rather than an enum: "one roasting tray", "blender + sieve".
-  @Column({ type: 'varchar', length: 120, nullable: true })
-  equipment: string | null
-
-  // One line per ingredient, exactly as it is read on the page
-  // ("800 g small waxy potatoes, halved if larger than a walnut").
-  @Column('text', { array: true, default: '{}' })
-  ingredients: string[]
 
   // Yazının bağlı olduğu koleksiyon (Project). Boş olabilir: koleksiyona
   // atanmamış yazılar blog listesinde görünmeye devam eder. Koleksiyon

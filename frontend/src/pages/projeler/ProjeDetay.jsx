@@ -167,7 +167,11 @@ export default function ProjeDetay() {
       <SEO
         title={project.name}
         description={projectDesc.slice(0, 160)}
+        // Undefined when the collection has no media yet; SEO falls back to the
+        // site card. Uploaded media has no known size, so no dimensions here —
+        // the crawler measures rather than trusting a wrong pair.
         image={coverImg}
+        imageAlt={project.name}
         jsonLd={jsonLd}
       />
       <PageHeader

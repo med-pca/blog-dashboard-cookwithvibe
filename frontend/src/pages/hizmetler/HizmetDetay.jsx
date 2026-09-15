@@ -441,6 +441,11 @@ export default function HizmetDetay() {
         title={service.title}
         description={`${service.subtitle} ${service.description}`.slice(0, 160)}
         image={`${SITE_URL}${service.photo}`}
+        imageAlt={service.title}
+        // Every guide photo under /guides/ is exported at this size, so the
+        // preview box is reserved correctly instead of assuming 1200x630.
+        imageWidth={1439}
+        imageHeight={810}
         jsonLd={jsonLd}
       />
       <PageHeader

@@ -10,6 +10,7 @@ import { useEffect, lazy, Suspense, useState, useRef } from "react";
 import { Bot } from "lucide-react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import SiteScripts from "./components/SiteScripts";
 import TeklifChatbot from "./components/TeklifChatbot";
 import PageLoader from "./components/PageLoader";
 import { AdminAuthProvider, useAdminAuth } from "./contexts/AdminAuthContext";
@@ -48,6 +49,7 @@ const Loglar = lazy(() => import("./pages/admin/Loglar"));
 const Analitik = lazy(() => import("./pages/admin/Analitik"));
 const Guvenlik = lazy(() => import("./pages/admin/Guvenlik"));
 const AdsAdmin = lazy(() => import("./pages/admin/AdsAdmin"));
+const AiSettingsAdmin = lazy(() => import("./pages/admin/AiSettingsAdmin"));
 const AiCampaignsAdmin = lazy(() => import("./pages/admin/AiCampaignsAdmin"));
 const AiCampaignForm = lazy(() => import("./pages/admin/AiCampaignForm"));
 const AiCampaignDetail = lazy(() => import("./pages/admin/AiCampaignDetail"));
@@ -139,6 +141,7 @@ function PublicLayout() {
   return (
     <>
       <ScrollToTop />
+      <SiteScripts />
       <PageLoader label="" fullScreen overlay show={showRouteOverlay} />
       <Navbar />
       <main>
@@ -235,6 +238,7 @@ function AdminRoutes() {
               element={<AiCampaignForm />}
             />
             <Route path="ai-loglar" element={<AiLoglar />} />
+            <Route path="ai-ayarlar" element={<AiSettingsAdmin />} />
             <Route path="sss" element={<SSSAdmin />} />
             <Route path="degerlendirmeler" element={<ChatDegerlendirme />} />
             <Route path="teklif-talepleri" element={<TeklifTalepleri />} />

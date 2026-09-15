@@ -29,10 +29,10 @@ export class AdsService {
     }
   }
 
-  // The publisher id is intentionally public (it is present in every AdSense
-  // tag) so Google can verify the site before ads are enabled. Slots remain
-  // hidden while the master switch is off.
-  async getPublic(): Promise<AdsSettings> {
+  // What the public site is allowed to see. Ads stay off unless they are both
+  // enabled and actually configured, so the frontend never injects a script for
+  // a half-filled setup.
+  async getPublic(): Promise<Pick<AdsSettings, 'enabled' | 'autoAds' | 'clientId' | 'slots'>> {
     const settings = await this.get()
     if (!settings.clientId) {
       return { enabled: false, autoAds: false, clientId: '', slots: { ...EMPTY_SLOTS } }
@@ -40,16 +40,18 @@ export class AdsService {
     if (!settings.enabled) {
       return { enabled: false, autoAds: false, clientId: settings.clientId, slots: { ...EMPTY_SLOTS } }
     }
-    return settings
+    return { enabled: settings.enabled, autoAds: settings.autoAds, clientId: settings.clientId, slots: settings.slots }
   }
 
-  // The line Google expects in /ads.txt; empty when no publisher id is set.
+  // Additional sellers can also be published without a Google publisher id.
   // Deliberately NOT gated on `enabled`: the file has to be reachable for Google
   // to verify the account, which happens before ads are ever switched on.
   async adsTxt(): Promise<string> {
-    const { clientId } = await this.get()
-    if (!clientId) return ''
-    return `google.com, ${clientId.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`
+    const { clientId, additionalAdsTxt } = await this.get()
+    const googleLine = clientId
+      ? `google.com, ${clientId.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`
+      : ''
+    return googleLine + (additionalAdsTxt ? `${additionalAdsTxt}\n` : '')
   }
 
   async update(dto: UpdateAdsDto): Promise<AdsSettings> {
@@ -58,6 +60,9 @@ export class AdsService {
       enabled: dto.enabled ?? current.enabled,
       autoAds: dto.autoAds ?? current.autoAds,
       clientId: dto.clientId ?? current.clientId,
+      additionalAdsTxt: dto.additionalAdsTxt ?? current.additionalAdsTxt,
+      headerScripts: dto.headerScripts ?? current.headerScripts,
+      footerScripts: dto.footerScripts ?? current.footerScripts,
       slots: { ...current.slots, ...(dto.slots ?? {}) },
     })
 
@@ -76,7 +81,12 @@ export class AdsService {
     return {
       enabled: raw.enabled === true,
       autoAds: raw.autoAds === true,
+      headerScripts: typeof raw.headerScripts === 'string' ? raw.headerScripts.trim() : '',
+      footerScripts: typeof raw.footerScripts === 'string' ? raw.footerScripts.trim() : '',
       clientId: typeof raw.clientId === 'string' ? raw.clientId.trim() : '',
+      additionalAdsTxt: typeof raw.additionalAdsTxt === 'string'
+        ? raw.additionalAdsTxt.replace(/\r\n?/g, '\n').trim()
+        : '',
       slots,
     }
   }

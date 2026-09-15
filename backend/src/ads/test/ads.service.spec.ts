@@ -24,12 +24,26 @@ const FULL = JSON.stringify({
 })
 
 describe('AdsService', () => {
+  it('persists scripts, preserves them on partial updates and supports clearing', async () => {
+    const headerScripts = '<script src="https://example.com/header.js" async></script>'
+    const footerScripts = '<script src="https://example.com/footer.js"></script>'
+    const { service, save } = makeService(FULL)
+    const result = await service.update({ headerScripts, footerScripts })
+    expect(JSON.parse(save.mock.calls[0][0].value)).toMatchObject({ headerScripts, footerScripts })
+    const stored = makeService(JSON.stringify(result)).service
+    expect(await stored.update({ enabled: false })).toMatchObject({ headerScripts, footerScripts })
+    expect(await stored.update({ headerScripts: '', footerScripts: '' })).toMatchObject({ headerScripts: '', footerScripts: '' })
+  })
+
   it('returns disabled defaults when nothing is stored', async () => {
     const { service } = makeService()
     await expect(service.get()).resolves.toEqual({
       enabled: false,
       autoAds: false,
       clientId: '',
+      additionalAdsTxt: '',
+      headerScripts: '',
+      footerScripts: '',
       slots: { blogList: '', blogArticleTop: '', blogArticleBottom: '', recipeDetail: '' },
     })
   })
@@ -106,10 +120,11 @@ describe('AdsService', () => {
     await expect(service.get()).resolves.toMatchObject({ autoAds: false })
   })
 
-  it('builds the ads.txt line from the publisher id', async () => {
-    const { service } = makeService(FULL)
+  it('puts the publisher line before the complete additional ads.txt content', async () => {
+    const { service } = makeService(JSON.stringify({ ...JSON.parse(FULL), additionalAdsTxt: '# Agency\nexample.com, 123, DIRECT' }))
     await expect(service.adsTxt()).resolves.toBe(
-      'google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0\n',
+      'google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0\n' +
+        '# Agency\nexample.com, 123, DIRECT\n',
     )
   })
 
@@ -121,5 +136,33 @@ describe('AdsService', () => {
   it('returns no ads.txt line when no publisher id is configured', async () => {
     const { service } = makeService()
     await expect(service.adsTxt()).resolves.toBe('')
+  })
+
+  it('supports old settings with no additional content', async () => {
+    const { service } = makeService(FULL)
+    expect((await service.get()).additionalAdsTxt).toBe('')
+    await expect(service.adsTxt()).resolves.toBe('google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0\n')
+  })
+
+  it('saves additional content and normalises line endings', async () => {
+    const { service, save } = makeService(FULL)
+    const result = await service.update({ additionalAdsTxt: '# Agency\r\nexample.com, 123, DIRECT\r\n' })
+    expect(result.additionalAdsTxt).toBe('# Agency\nexample.com, 123, DIRECT')
+    expect(JSON.parse(save.mock.calls[0][0].value).additionalAdsTxt).toBe(result.additionalAdsTxt)
+  })
+
+  it('preserves additional content on unrelated updates and allows explicit removal', async () => {
+    const { service, save } = makeService(JSON.stringify({ ...JSON.parse(FULL), additionalAdsTxt: 'example.com, 123, DIRECT' }))
+    expect((await service.update({ enabled: false })).additionalAdsTxt).toBe('example.com, 123, DIRECT')
+    expect((await service.update({ additionalAdsTxt: '' })).additionalAdsTxt).toBe('')
+    expect(JSON.parse(save.mock.calls[1][0].value).additionalAdsTxt).toBe('')
+  })
+
+  it('serves additional sellers without a Google account and keeps public config small', async () => {
+    const { service } = makeService(JSON.stringify({ additionalAdsTxt: 'example.com, 123, DIRECT' }))
+    await expect(service.adsTxt()).resolves.toBe('example.com, 123, DIRECT\n')
+    expect(await service.getPublic()).not.toHaveProperty('additionalAdsTxt')
+    expect(await makeService(JSON.stringify({ ...JSON.parse(FULL), additionalAdsTxt: 'example.com, 123, DIRECT' })).service.getPublic())
+      .not.toHaveProperty('additionalAdsTxt')
   })
 })

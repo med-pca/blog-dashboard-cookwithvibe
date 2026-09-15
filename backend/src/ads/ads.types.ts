@@ -16,6 +16,9 @@ export interface AdsSettings {
   enabled: boolean
   autoAds: boolean
   clientId: string
+  additionalAdsTxt: string
+  headerScripts: string
+  footerScripts: string
   slots: AdSlots
 }
 
@@ -30,5 +33,8 @@ export const DEFAULT_SETTINGS: AdsSettings = {
   enabled: false,
   autoAds: false,
   clientId: '',
+  additionalAdsTxt: '',
+  headerScripts: '',
+  footerScripts: '',
   slots: { ...EMPTY_SLOTS },
 }

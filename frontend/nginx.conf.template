@@ -178,7 +178,7 @@ server {
     location ^~ /ads.txt {
         # Google AdSense verification file, generated from the publisher id saved
         # in the admin panel. Same variable-based proxy_pass note as /sitemap.xml.
-        # Returns 404 while no publisher id is configured, which is what "no
+        # Returns 404 while no publisher or additional content is configured, which is what "no
         # ads.txt" means to Google (an empty file would block ads instead).
         set $backend_adstxt http://backend:3001;
         proxy_pass $backend_adstxt;
@@ -191,7 +191,7 @@ server {
         proxy_hide_header Strict-Transport-Security;
         proxy_hide_header X-Content-Type-Options;
         proxy_hide_header Cache-Control;
-        add_header Cache-Control "public, max-age=3600";
+        add_header Cache-Control "no-cache";
         include /etc/nginx/snippets/security-headers.conf;
     }
 

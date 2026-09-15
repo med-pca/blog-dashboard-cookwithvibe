@@ -24,3 +24,11 @@ export function resolveCoverSrc(coverImage, seed = 0) {
   if (coverImage.startsWith("/food/")) return coverImage;
   return `${API}${coverImage}`;
 }
+
+// Social crawlers (Facebook, X, LinkedIn, WhatsApp) do not render SVG, so a
+// post without a cover would share with no preview image at all. The bundled
+// illustrations ship a .webp twin next to every .svg — same artwork, same
+// deterministic seed — so the share image stays in step with the page.
+export function fallbackSocialCover(seed = 0) {
+  return fallbackCover(seed).replace(/\.svg$/, ".webp");
+}

@@ -14,6 +14,13 @@ export class AdsController {
     return this.service.getPublic()
   }
 
+  @Get('scripts')
+  @Header('Cache-Control', 'no-store')
+  async scripts() {
+    const { headerScripts, footerScripts } = await this.service.get()
+    return { headerScripts, footerScripts }
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get('admin')
   findAdmin() {

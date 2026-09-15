@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Megaphone, Save, Copy, Check, ExternalLink, AlertCircle } from 'lucide-react'
+import { Megaphone, Save, Copy, Check, ExternalLink, AlertCircle, Upload, Trash2 } from 'lucide-react'
 import { fetchAdsSettings, saveAdsSettings, EMPTY_SLOTS } from '../../api/ads'
 import { useAdminAuth } from '../../contexts/AdminAuthContext'
+import { parseSiteScripts } from '../../lib/siteScripts'
 
 const CLIENT_ID_PATTERN = /^ca-pub-\d{16}$/
 const SLOT_PATTERN = /^\d{6,20}$/
+const MAX_ADS_TXT_LENGTH = 100000
 
 // Mirrors the placements the public site renders; the copy explains where each
 // unit shows up so slots are not pasted into the wrong box.
@@ -43,7 +45,17 @@ export default function AdsAdmin() {
   const { logout } = useAdminAuth()
   const navigate = useNavigate()
 
-  const [form, setForm] = useState({ enabled: false, autoAds: false, clientId: '', slots: { ...EMPTY_SLOTS } })
+  const [form, setForm] = useState({
+    enabled: false,
+    autoAds: false,
+    clientId: '',
+    additionalAdsTxt: '',
+    headerScripts: '',
+    footerScripts: '',
+    slots: { ...EMPTY_SLOTS },
+  })
+  const importInput = useRef(null)
+  const [importing, setImporting] = useState(false)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
@@ -52,7 +64,7 @@ export default function AdsAdmin() {
 
   useEffect(() => {
     fetchAdsSettings()
-      .then((data) => setForm({ ...data, slots: { ...EMPTY_SLOTS, ...data.slots } }))
+      .then((data) => setForm({ additionalAdsTxt: '', headerScripts: '', footerScripts: '', ...data, slots: { ...EMPTY_SLOTS, ...data.slots } }))
       .catch((err) => {
         if (err.status === 401) {
           logout()
@@ -72,16 +84,36 @@ export default function AdsAdmin() {
     (p) => form.slots[p.key] && !SLOT_PATTERN.test(form.slots[p.key]),
   )
   const filledSlots = PLACEMENTS.filter((p) => form.slots[p.key]).length
-  const canSave = clientIdValid && invalidSlots.length === 0 && !saving
+  const canSave = clientIdValid && invalidSlots.length === 0 && !saving && !importing
 
   // The publisher id without the "ca-" prefix is what ads.txt expects.
   const adsTxtLine = form.clientId
     ? `google.com, ${form.clientId.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0`
     : ''
+  const adsTxtContent = [adsTxtLine, form.additionalAdsTxt.replace(/\r\n?/g, '\n').trim()]
+    .filter(Boolean).join('\n')
+
+  const importAdsTxt = async (event) => {
+    const file = event.target.files?.[0]
+    event.target.value = ''
+    if (!file) return
+    setError('')
+    setSaved(false)
+    setImporting(true)
+    try {
+      if (file.size > MAX_ADS_TXT_LENGTH) throw new Error('The file must be under 100 KB.')
+      const content = await file.text()
+      setForm((f) => ({ ...f, additionalAdsTxt: content }))
+    } catch (err) {
+      setError(err.message || 'Could not read the file')
+    } finally {
+      setImporting(false)
+    }
+  }
 
   const copyAdsTxt = async () => {
     try {
-      await navigator.clipboard.writeText(adsTxtLine)
+      await navigator.clipboard.writeText(adsTxtContent ? `${adsTxtContent}\n` : '')
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
@@ -95,8 +127,10 @@ export default function AdsAdmin() {
     setSaved(false)
     setSaving(true)
     try {
+      parseSiteScripts(form.headerScripts)
+      parseSiteScripts(form.footerScripts)
       const next = await saveAdsSettings(form)
-      setForm({ ...next, slots: { ...EMPTY_SLOTS, ...next.slots } })
+      setForm({ headerScripts: '', footerScripts: '', ...next, slots: { ...EMPTY_SLOTS, ...next.slots } })
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)
     } catch (err) {
@@ -262,37 +296,112 @@ export default function AdsAdmin() {
         </div>
 
         {/* ads.txt — served automatically from the publisher id above */}
-        {adsTxtLine && (
-          <div className="bg-white rounded-2xl border border-gray-100 p-5">
+        <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-3">
+          <div className="flex items-center justify-between gap-3">
             <p className="text-sm font-semibold text-gray-800">ads.txt</p>
-            <p className="text-xs text-gray-400 mt-0.5 mb-3">
-              Served automatically at{' '}
-              <a
-                href="/ads.txt"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-[#b33b62] hover:underline"
-              >
-                /ads.txt
-              </a>{' '}
-              as soon as the publisher id above is saved — nothing to upload or
-              redeploy. Google needs it to verify the account.
-            </p>
-            <div className="flex items-center gap-2">
-              <code className="flex-1 text-xs bg-gray-50 border border-gray-100 rounded-lg px-3 py-2.5 overflow-x-auto whitespace-nowrap">
-                {adsTxtLine}
-              </code>
+            <a
+              href="/ads.txt"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm text-[#b33b62] hover:underline"
+            >
+              /ads.txt <ExternalLink size={14} />
+            </a>
+          </div>
+          <p className="text-xs text-gray-400">
+            Served automatically as soon as the publisher id above is saved — nothing to
+            upload or redeploy. Google needs it to verify the account.
+          </p>
+          {adsTxtLine && (
+            <code className="block text-xs bg-gray-50 border border-gray-100 rounded-lg px-3 py-2.5 break-all">
+              {adsTxtLine}
+            </code>
+          )}
+
+          <div className="flex items-center justify-between gap-2 pt-2">
+            <label htmlFor="additional-ads-txt" className="text-sm font-medium text-gray-700">
+              Additional content
+            </label>
+            <div className="flex shrink-0 gap-1">
+              <input
+                ref={importInput}
+                type="file"
+                accept=".txt,text/plain"
+                className="hidden"
+                aria-label="Import ads.txt"
+                onChange={importAdsTxt}
+                disabled={saving || importing}
+              />
               <button
                 type="button"
+                title="Import .txt file"
+                aria-label="Import .txt file"
+                disabled={saving || importing}
+                onClick={() => importInput.current?.click()}
+                className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 disabled:opacity-40"
+              >
+                <Upload size={16} />
+              </button>
+              <button
+                type="button"
+                title="Clear additional content"
+                aria-label="Clear additional content"
+                disabled={saving || importing || !form.additionalAdsTxt}
+                onClick={() => { setForm((f) => ({ ...f, additionalAdsTxt: '' })); setSaved(false) }}
+                className="p-2 rounded-lg text-gray-500 hover:bg-red-50 hover:text-red-600 disabled:opacity-40"
+              >
+                <Trash2 size={16} />
+              </button>
+              <button
+                type="button"
+                title="Copy complete ads.txt"
+                aria-label="Copy complete ads.txt"
                 onClick={copyAdsTxt}
-                className="shrink-0 p-2.5 rounded-lg text-gray-400 hover:text-[#b33b62] hover:bg-green-50 transition-colors"
-                title="Copy the ads.txt line"
+                disabled={!adsTxtContent}
+                className="p-2 rounded-lg text-gray-500 hover:text-[#b33b62] hover:bg-gray-100 disabled:opacity-40"
               >
                 {copied ? <Check size={16} className="text-[#b33b62]" /> : <Copy size={16} />}
               </button>
             </div>
           </div>
-        )}
+          <textarea
+            id="additional-ads-txt"
+            rows={12}
+            maxLength={MAX_ADS_TXT_LENGTH}
+            value={form.additionalAdsTxt}
+            disabled={saving || importing}
+            spellCheck={false}
+            onChange={(e) => { setForm((f) => ({ ...f, additionalAdsTxt: e.target.value })); setSaved(false) }}
+            className="w-full min-w-0 resize-y border border-gray-200 rounded-lg p-3 text-xs font-mono leading-5 focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]"
+          />
+          <p className="text-right text-xs text-gray-400">{form.additionalAdsTxt.length.toLocaleString()} / 100,000</p>
+        </div>
+
+        {/* Site scripts — external <script> tags injected on every page */}
+        <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
+          <p className="text-sm font-semibold text-gray-800">Site scripts</p>
+          {[
+            ['headerScripts', 'Header scripts'],
+            ['footerScripts', 'Footer scripts'],
+          ].map(([key, label]) => (
+            <div key={key}>
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <label htmlFor={key} className="text-sm font-medium text-gray-700">{label}</label>
+                <button type="button" title={`Clear ${label.toLowerCase()}`} aria-label={`Clear ${label.toLowerCase()}`}
+                  disabled={saving || !form[key]}
+                  onClick={() => { setForm((f) => ({ ...f, [key]: '' })); setSaved(false) }}
+                  className="p-2 rounded-lg text-gray-500 hover:bg-red-50 hover:text-red-600 disabled:opacity-40">
+                  <Trash2 size={16} />
+                </button>
+              </div>
+              <textarea id={key} rows={5} maxLength={20000} value={form[key]} disabled={saving}
+                spellCheck={false} autoCapitalize="off" autoCorrect="off"
+                placeholder={'<script src="https://example.com/script.js" async></script>'}
+                onChange={(e) => { setForm((f) => ({ ...f, [key]: e.target.value })); setSaved(false) }}
+                className="w-full min-w-0 resize-y border border-gray-200 rounded-lg p-3 text-xs font-mono leading-5 focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]" />
+            </div>
+          ))}
+        </div>
 
         {error && (
           <div className="bg-red-50 text-red-600 text-sm rounded-xl px-4 py-3">{error}</div>
