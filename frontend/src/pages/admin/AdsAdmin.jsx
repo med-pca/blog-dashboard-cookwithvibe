@@ -377,9 +377,14 @@ export default function AdsAdmin() {
           <p className="text-right text-xs text-gray-400">{form.additionalAdsTxt.length.toLocaleString()} / 100,000</p>
         </div>
 
-        {/* Site scripts — external <script> tags injected on every page */}
+        {/* Site scripts — <script> tags injected on every page of the public site */}
         <div className="bg-white rounded-2xl border border-gray-100 p-5 space-y-4">
-          <p className="text-sm font-semibold text-gray-800">Site scripts</p>
+          <div>
+            <p className="text-sm font-semibold text-gray-800">Site scripts</p>
+            <p className="text-xs text-gray-500 mt-1">
+              <code>&lt;script&gt;</code> tags only — external ones need an HTTPS <code>src</code>, inline ones go in their own tag. No other markup.
+            </p>
+          </div>
           {[
             ['headerScripts', 'Header scripts'],
             ['footerScripts', 'Footer scripts'],
@@ -396,7 +401,7 @@ export default function AdsAdmin() {
               </div>
               <textarea id={key} rows={5} maxLength={20000} value={form[key]} disabled={saving}
                 spellCheck={false} autoCapitalize="off" autoCorrect="off"
-                placeholder={'<script src="https://example.com/script.js" async></script>'}
+                placeholder={'<script src="https://example.com/script.js" async></script>\n<script>window.example = { id: "123" }</script>'}
                 onChange={(e) => { setForm((f) => ({ ...f, [key]: e.target.value })); setSaved(false) }}
                 className="w-full min-w-0 resize-y border border-gray-200 rounded-lg p-3 text-xs font-mono leading-5 focus:outline-none focus:ring-2 focus:ring-[#b33b62]/30 focus:border-[#b33b62]" />
             </div>

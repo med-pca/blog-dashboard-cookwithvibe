@@ -23,11 +23,19 @@ describe('AdsAdmin additional ads.txt', () => {
     await waitFor(() => expect(saveAdsSettings).toHaveBeenCalledWith(expect.objectContaining({ headerScripts: tag })))
     expect(document.querySelector('script[src*="prebid_hb"]')).toBeNull()
   })
-  it('rejects inline scripts before saving', async () => {
+  it('saves an inline script without executing it in the admin', async () => {
     await open()
-    fireEvent.change(screen.getByLabelText('Header scripts'), { target: { value: '<script>alert(1)</script>' } })
+    const tag = "<script>window.dataLayer = window.dataLayer || []; gtag('config', 'G-TEST')</script>"
+    fireEvent.change(screen.getByLabelText('Header scripts'), { target: { value: tag } })
     fireEvent.click(screen.getByRole('button', { name: 'Save Changes' }))
-    expect(await screen.findByText(/Inline JavaScript and other HTML are not supported/)).toBeInTheDocument()
+    await waitFor(() => expect(saveAdsSettings).toHaveBeenCalledWith(expect.objectContaining({ headerScripts: tag })))
+    expect(document.querySelector('script:not([src])')).toBeNull()
+  })
+  it('rejects non-script markup before saving', async () => {
+    await open()
+    fireEvent.change(screen.getByLabelText('Header scripts'), { target: { value: '<img src="https://example.com/a">' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Save Changes' }))
+    expect(await screen.findByText(/Other HTML is not supported/)).toBeInTheDocument()
     expect(saveAdsSettings).not.toHaveBeenCalled()
   })
   beforeEach(() => {
